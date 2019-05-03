@@ -4,8 +4,8 @@ public class BlazerJacketCoat extends AbsDryCleaning {
 
   private final double price = 17.99;
 
-  public BlazerJacketCoat(int ID, boolean isDownDryCleaned) {
-    super(ID, isDownDryCleaned);
+  public BlazerJacketCoat(boolean isDownDryCleaned) {
+    super(isDownDryCleaned);
   }
 
   @Override

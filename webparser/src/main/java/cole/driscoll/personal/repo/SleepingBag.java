@@ -1,15 +1,12 @@
 package cole.driscoll.personal.repo;
 
-public class ComRegular extends AbsCommercialBag {
+public class SleepingBag extends AbsSpecial {
 
   private final double price = 44.99;
-
-  /*public ComRegular(int ID) {
-    super(ID);
-  }*/
 
   @Override
   public double getPrice() {
     return price;
   }
+
 }

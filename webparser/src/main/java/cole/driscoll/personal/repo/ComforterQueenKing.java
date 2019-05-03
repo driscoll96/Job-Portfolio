@@ -4,8 +4,8 @@ public class ComforterQueenKing extends AbsComforter {
 
   private final double price = 40.00;
 
-  public ComforterQueenKing(int ID, boolean down) {
-    super(ID, down);
+  public ComforterQueenKing(boolean down) {
+    super(down);
   }
 
   @Override

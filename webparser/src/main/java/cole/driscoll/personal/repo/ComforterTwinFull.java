@@ -4,8 +4,8 @@ public class ComforterTwinFull extends AbsComforter {
 
   private final double price = 35.00;
 
-  public ComforterTwinFull(int ID, boolean down) {
-    super(ID, down);
+  public ComforterTwinFull(boolean down) {
+    super(down);
   }
 
   public double getPrice() {

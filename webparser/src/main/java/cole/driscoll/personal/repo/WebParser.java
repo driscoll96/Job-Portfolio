@@ -1,29 +1,43 @@
 package cole.driscoll.personal.repo;
 
-import java.io.IOException;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
-public class WebParser {
+public class WebParser extends AbsWebScraper {
 
-  public static void main(String[] args) {
-    final String url =
-        "https://www.loopie.us/admin/orders.php?location=&status=&zip_code=&date_start=07%2F01%2F2018&date_end=04%2F24%2F2019&tag=&search=#";
+  private CustomerPool pool;
+  private List<WebElement> orders;
 
-    try {
-      final Document doc = Jsoup.connect(url)
-          //.header("Accept-Encoding", "gzip, deflate")
-          //.userAgent("Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0")
-          //.maxBodySize(0)
-          //.timeout(600000)
-          .get();
-      System.out.println(doc.outerHtml());
-      //for (Element row : document.select("table.tablesorter.full tr")) {
-      //}
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+  public WebParser(WebDriver driver) {
+    super(driver);
+    List<WebElement> orders = super.getWebOrders();
   }
 
+  public List<Order> convertWebOrders() throws ParseException {
+    this.pool = new CustomerPool();
+    List<Order> convertedOrders = new ArrayList<>();
+    Order order;
+    Date orderDate, delivery, pickUp;
+    List<AbsBag> bags;
+    for (int i = 0; i < orders.size(); i++) {
+      List<String> orderInfo = Arrays.asList(orders.get(i).getText().split(" "));
+      orderDate = new SimpleDateFormat("MM/dd/yyyy hh:mma").parse(orderInfo.get(1)+" "+orderInfo.get(3));
+      delivery = new SimpleDateFormat("MM/dd/yyyy hh:mma").parse(orderInfo.get(6)+" "+orderInfo.get(8));
+      pickUp = new SimpleDateFormat("MM/dd/yyyy hh:mma").parse(orderInfo.get(9)+" "+orderInfo.get(11));
+      orders.get(0).click();
+      super.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+      bags = super.getBagList(Integer.parseInt(orderInfo.get(0)));
+      order = new Order(Integer.parseInt(orderInfo.get(0)), orderDate, pickUp, delivery,
+          Double.parseDouble(orderInfo.get(14).substring(1)), bags, null);
+
+    }
+    return convertedOrders;
+  }
 }

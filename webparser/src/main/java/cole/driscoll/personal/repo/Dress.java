@@ -4,8 +4,8 @@ public class Dress extends AbsDryCleaning {
 
   private final double price = 19.99;
 
-  public Dress(int ID, boolean isDownDryCleaned) {
-    super(ID, isDownDryCleaned);
+  public Dress(boolean isDownDryCleaned) {
+    super(isDownDryCleaned);
   }
 
   @Override

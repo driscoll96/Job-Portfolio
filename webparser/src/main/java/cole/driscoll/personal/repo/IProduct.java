@@ -1,6 +1,6 @@
 package cole.driscoll.personal.repo;
 
-public interface IBag {
+public interface IProduct {
 
   double getPrice();
 
