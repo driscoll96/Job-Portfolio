@@ -1,12 +1,14 @@
 package cole.driscoll.personal.repo;
 
-public class WashDry extends AbsStandardBag {
+/**
+ * Wash and dry product type.
+ */
+public class WashDry extends AbsNonCommercialBag {
 
+  /**
+   * Base Price of the product.
+   */
   private final double price = 24.99;
-
-  /*public WashDry(int ID) {
-    super(ID);
-  }*/
 
   @Override
   public double getPrice() {

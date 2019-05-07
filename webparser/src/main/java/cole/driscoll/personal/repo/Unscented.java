@@ -1,11 +1,14 @@
 package cole.driscoll.personal.repo;
 
+/**
+ * Unscented detergent product type.
+ */
 public class Unscented extends AbsDetergent {
 
+  /**
+   * Base Price of the product.
+   */
   private final double price = 1.29;
-
-  public Unscented() {
-  }
 
   @Override
   public double getPrice() {

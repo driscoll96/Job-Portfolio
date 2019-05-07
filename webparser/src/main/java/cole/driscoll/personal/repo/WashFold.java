@@ -1,6 +1,6 @@
 package cole.driscoll.personal.repo;
 
-public class WashFold extends AbsStandardBag {
+public class WashFold extends AbsNonCommercialBag {
 
   private final double price = 29.99;
   private boolean notDelivered;

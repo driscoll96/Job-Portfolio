@@ -1,9 +1,9 @@
 package cole.driscoll.personal.repo;
 
 /**
- * Info of commercial customer.
+ * Non commercial customer info.
  */
-public class CommercialCustomer extends AbsCustomer {
+public class NonCommercialCustomer extends AbsCustomer {
 
   /**
    * Constructor of the which takes and fills all properties, except the order list which it just
@@ -16,7 +16,7 @@ public class CommercialCustomer extends AbsCustomer {
    * @param mobileCarrier - Mobile carrier used by the customers.
    * @param address - Address info of the customer.
    */
-  public CommercialCustomer(String firstName, String lastName, String email, String phoneNum,
+  public NonCommercialCustomer(String firstName, String lastName, String email, String phoneNum,
       String mobileCarrier, Address address) {
     super(firstName, lastName, email, phoneNum, mobileCarrier, address);
   }

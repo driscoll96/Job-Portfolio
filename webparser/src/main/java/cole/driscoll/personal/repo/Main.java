@@ -31,6 +31,7 @@ public class Main {
     driver.findElement(By.xpath("//*[@id=\"login_form\"]/div[3]/button")).click();
     driver.findElement(By.xpath("//*[@id=\"content\"]/main/aside/div[2]/ul/li[3]/a")).click();
     driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    // TODO: Scrape/parse the customer list first then get the orders
     WebElement dateStart = driver.findElement(By.name("date_start"));
     dateStart.clear();
     dateStart.sendKeys("07/01/2018");

@@ -1,55 +1,86 @@
 package cole.driscoll.personal.repo;
 
+import java.util.List;
+
+/**
+ * Identifies different types of products or customers.
+ */
 public class TypeIdentifier {
 
-  public AbsProduct identifyBagType(String bagWebName) {
-    if (bagWebName.equals("Loopie Wash & Fold Service ( Per bag)")) {
+  /**
+   * Preforms a series of checks to identify the correct bag type and make an instance of it.
+   *
+   * @param productWebName - The web name of the product item
+   * @return - Instance of the correct product type
+   */
+  public AbsProduct identifyProductType(String productWebName) {
+    if (productWebName.equals("Loopie Wash & Fold Service ( Per bag)")) {
       return new WashFold(false);
-    } else if (bagWebName.equals("Commercial Order (Regular)")) {
+    } else if (productWebName.equals("Commercial Order (Regular)")) {
       return new ComRegular();
-    } else if (bagWebName.equals("Commercial Order (Large bag)")) {
+    } else if (productWebName.equals("Commercial Order (Large bag)")) {
       return new ComLarge();
-    } else if (bagWebName.equals("Wash & Dry (No Fold!)")) {
+    } else if (productWebName.equals("Wash & Dry (No Fold!)")) {
       return new WashDry();
-    } else if (bagWebName.equals("Comforter (Twin-Full)")) {
+    } else if (productWebName.equals("Comforter (Twin-Full)")) {
       return new ComforterTwinFull(false);
-    } else if (bagWebName.equals("Comforter (Queen-King)")) {
+    } else if (productWebName.equals("Comforter (Queen-King)")) {
       return new ComforterQueenKing(false);
-    } else if (bagWebName.equals("Down Comforters (Queen-King)")) {
+    } else if (productWebName.equals("Down Comforters (Queen-King)")) {
       return new ComforterQueenKing(true);
-    } else if (bagWebName.equals("Down Comforters (Twin-Full)")) {
+    } else if (productWebName.equals("Down Comforters (Twin-Full)")) {
       return new ComforterQueenKing(true);
-    } else if (bagWebName.equals("Shirt or Blouse (Laundered & Pressed)")) {
+    } else if (productWebName.equals("Shirt or Blouse (Laundered & Pressed)")) {
       return new ShirtBlouse(false);
-    } else if (bagWebName.equals("Suit Special (2 Shirts, 1 Pant, 1 Suit Jacket or Blazer)")) {
+    } else if (productWebName.equals("Suit Special (2 Shirts, 1 Pant, 1 Suit Jacket or Blazer)")) {
       return new SuitSpecial(false);
-    } else if (bagWebName.equals("Pant / Skirt / Sweater / Jeans (Laundered & Pressed)")) {
+    } else if (productWebName.equals("Pant / Skirt / Sweater / Jeans (Laundered & Pressed)")) {
       return new PantSkirtSweaterJean(false);
-    } else if (bagWebName.equals("Blazer / Suit Jacket / Sport Coat")) {
+    } else if (productWebName.equals("Blazer / Suit Jacket / Sport Coat")) {
       return new BlazerJacketCoat(false);
-    } else if (bagWebName.equals("Wash & Fold (Self Drop Off & pickup)")) {
+    } else if (productWebName.equals("Wash & Fold (Self Drop Off & pickup)")) {
       return new WashFold(true);
-    } else if (bagWebName.equals("Standard 32\" x 22\" nylon Loopie bag (Yellow)")) {
+    } else if (productWebName.equals("Standard 32\" x 22\" nylon Loopie bag (Yellow)")) {
       return new YellowBag();
-    } else if (bagWebName.equals("Stain & Odor (Lavender Eucalyptus)")) {
+    } else if (productWebName.equals("Stain & Odor (Lavender Eucalyptus)")) {
       return new StainOdor(true);
-    } else if (bagWebName.equals("Sensitive Skin (Fresh Scent natural laundry detergent)")) {
+    } else if (productWebName.equals("Sensitive Skin (Fresh Scent natural laundry detergent)")) {
       return new SensitiveSkin();
-    } else if (bagWebName.equals("Unscented Detergent")) {
+    } else if (productWebName.equals("Unscented Detergent")) {
       return new Unscented();
-    } else if (bagWebName.equals("Commercial Loopie bag 30\" x 40\" (Blue)")) {
+    } else if (productWebName.equals("STAIN & ODOR Clean Scent Eco- Friendly (Default)")) {
+      return new StainOdor(false);
+    } else if (productWebName.equals("Commercial Loopie bag 30\" x 40\" (Blue)")) {
       return new BlueBag();
-    } else if (bagWebName.equals("Shirt or Blouse (Dry cleaned)")) {
+    } else if (productWebName.equals("Shirt or Blouse (Dry cleaned)")) {
       return new ShirtBlouse(true);
-    } else if (bagWebName.equals("Dress (Dry Cleaned)")) {
+    } else if (productWebName.equals("Dress (Dry Cleaned)")) {
       return new Dress(true);
-    } else if (bagWebName.equals("Bedding Bag! (Sheets, Comforter, Towel & Pillow Cases)")) {
+    } else if (productWebName.equals("Bedding Bag! (Sheets, Comforter, Towel & Pillow Cases)")) {
       return new Bedding();
-    } else if (bagWebName.equals("Sleeping Bag")) {
+    } else if (productWebName.equals("Sleeping Bag")) {
       return new SleepingBag();
-    } else if (bagWebName.equals("Clothing Donation (Free)")) {
+    } else if (productWebName.equals("Clothing Donation (Free)")) {
       return new Donation();
     }
     return null;
+  }
+
+  /**
+   * Identify a customer's type based on whether they have ordered a commercial type product.
+   *
+   * ** Scraping the diff customer types for now.
+   *
+   * @param products - List of products in the order
+   * @return - New customer instance
+   */
+  public AbsCustomer identifyCustomerType(List<AbsProduct> products, String firstName,
+      String lastName, String email, String phoneNum, String mobileCarrier, Address address) {
+    for (AbsProduct product : products) {
+      if (product instanceof AbsCommercialBag) {
+        return new CommercialCustomer(firstName, lastName, email, phoneNum, mobileCarrier, address);
+      }
+    }
+    return new NonCommercialCustomer(firstName, lastName, email, phoneNum, mobileCarrier, address);
   }
 }
