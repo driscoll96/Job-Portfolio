@@ -26,7 +26,7 @@ public class Bedding extends AbsSpecial {
       return false;
     }
     Bedding bedding = (Bedding) o;
-    return Double.compare(bedding.price, price) == 0;
+    return Double.compare(bedding.getPrice(), getPrice()) == 0;
   }
 
   @Override

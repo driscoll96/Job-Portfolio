@@ -2,21 +2,26 @@ package cole.driscoll.personal.repo;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 /**
  * Checker which makes sure that the company products or prices have not changed.
  */
-public class CheckForUpdate extends AbsWebScraper {
+public class CheckForUpdate {
+
+  private WebDriver adminDriver;
+
+  private WebDriver airtableDriver;
 
   /**
-   * Constructor which takes the WebDriver.
+   * Constructor which takes the WebDrivers of the Admin website and Airtable.com.
    *
-   * @param driver - WebDriver
+   * @param adminDriver - WebDriver for Admin website
+   * @param airtableDriver - WebDriver for Airtable.com
    */
-  public CheckForUpdate(WebDriver driver) {
-    super(driver);
+  public CheckForUpdate(WebDriver adminDriver, WebDriver airtableDriver) {
+    this.adminDriver = adminDriver;
+    this.airtableDriver = airtableDriver;
   }
 
   /**
@@ -26,16 +31,18 @@ public class CheckForUpdate extends AbsWebScraper {
    */
   public boolean sameProducts() {
     try {
-      getDriver().findElement(By.xpath("//*[@id=\"content\"]/main/div/div[1]/div/div[1]/form/div/span/button")).click();
-      getDriver().findElement(By.xpath("/html/body/div/nav/div/ul/li[3]/a")).click();
-      getDriver().findElement(By.xpath("//*[@id=\"zip\"]")).sendKeys("98103");
-      getDriver().findElement(By.xpath("//*[@id=\"zip_button\"]")).click();
-      List<String> products = super.getProductListFromCustomers();
-      // Use Webscraper function to get Airtable product list
+      AdminWebScraper adminScraper = new AdminWebScraper(adminDriver);
+      AirtableWebScraper airtableScraper = new AirtableWebScraper(airtableDriver);
+      List<String> adminProducts = adminScraper.getProductList();
+      List<String> airtableProducts = airtableScraper.getProductList();
+      if (adminProducts.equals(airtableProducts)) {
+        return true;
+      }
     } catch (NoSuchElementException e) {
       System.out.println("Program terminated. Please make sure you are logged out of your Loopie "
           + "customer account before loading the program");
-      getDriver().close();
+      adminDriver.close();
+      airtableDriver.close();
       System.exit(1);
     }
     return false;

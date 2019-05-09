@@ -1,5 +1,7 @@
 package cole.driscoll.personal.repo;
 
+import java.util.Objects;
+
 /**
  * Suit special product type.
  */
@@ -22,5 +24,22 @@ public class SuitSpecial extends AbsDryCleaning {
   @Override
   public double getPrice() {
     return price;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof SuitSpecial)) {
+      return false;
+    }
+    SuitSpecial that = (SuitSpecial) o;
+    return Double.compare(that.getPrice(), getPrice()) == 0;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(price);
   }
 }

@@ -1,5 +1,7 @@
 package cole.driscoll.personal.repo;
 
+import java.util.Objects;
+
 /**
  * Wash and dry product type.
  */
@@ -13,5 +15,22 @@ public class WashDry extends AbsNonCommercialBag {
   @Override
   public double getPrice() {
     return price;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof WashDry)) {
+      return false;
+    }
+    WashDry washDry = (WashDry) o;
+    return Double.compare(washDry.getPrice(), getPrice()) == 0;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(price);
   }
 }

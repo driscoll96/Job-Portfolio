@@ -30,7 +30,7 @@ public class BlazerJacketCoat extends AbsDryCleaning {
       return false;
     }
     BlazerJacketCoat that = (BlazerJacketCoat) o;
-    return Double.compare(that.price, price) == 0;
+    return Double.compare(that.getPrice(), getPrice()) == 0;
   }
 
   @Override

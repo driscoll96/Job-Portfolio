@@ -26,7 +26,7 @@ public class SensitiveSkin extends AbsDetergent {
       return false;
     }
     SensitiveSkin that = (SensitiveSkin) o;
-    return Double.compare(that.price, price) == 0;
+    return Double.compare(that.getPrice(), getPrice()) == 0;
   }
 
   @Override

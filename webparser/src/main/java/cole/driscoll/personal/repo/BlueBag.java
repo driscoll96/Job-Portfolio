@@ -26,7 +26,7 @@ public class BlueBag extends AbsBag {
       return false;
     }
     BlueBag blueBag = (BlueBag) o;
-    return Double.compare(blueBag.price, price) == 0;
+    return Double.compare(blueBag.getPrice(), getPrice()) == 0;
   }
 
   @Override

@@ -1,5 +1,7 @@
 package cole.driscoll.personal.repo;
 
+import java.util.Objects;
+
 /**
  * Sleeping bag product type.
  */
@@ -15,4 +17,20 @@ public class SleepingBag extends AbsSpecial {
     return price;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof SleepingBag)) {
+      return false;
+    }
+    SleepingBag that = (SleepingBag) o;
+    return Double.compare(that.getPrice(), getPrice()) == 0;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(price);
+  }
 }

@@ -26,7 +26,7 @@ public class ComRegular extends AbsCommercialBag {
       return false;
     }
     ComRegular that = (ComRegular) o;
-    return Double.compare(that.price, price) == 0;
+    return Double.compare(that.getPrice(), getPrice()) == 0;
   }
 
   @Override

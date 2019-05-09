@@ -1,5 +1,7 @@
 package cole.driscoll.personal.repo;
 
+import java.util.Objects;
+
 /**
  * Stain odor detergent product type.
  */
@@ -30,5 +32,23 @@ public class StainOdor extends AbsDetergent {
       return price + 1.79;
     }
     return price;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof StainOdor)) {
+      return false;
+    }
+    StainOdor stainOdor = (StainOdor) o;
+    return Double.compare(stainOdor.getPrice(), getPrice()) == 0 &&
+        isLavender == stainOdor.isLavender;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(price, isLavender);
   }
 }

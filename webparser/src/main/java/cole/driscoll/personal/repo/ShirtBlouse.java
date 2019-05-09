@@ -1,5 +1,7 @@
 package cole.driscoll.personal.repo;
 
+import java.util.Objects;
+
 /**
  * Shirt/Blouse product type.
  */
@@ -25,5 +27,22 @@ public class ShirtBlouse extends AbsDryCleaning {
       return price + priceIncrease;
     }
     return price;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof ShirtBlouse)) {
+      return false;
+    }
+    ShirtBlouse that = (ShirtBlouse) o;
+    return Double.compare(that.getPrice(), getPrice()) == 0;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(price);
   }
 }

@@ -26,7 +26,7 @@ public class ComLarge extends AbsCommercialBag {
       return false;
     }
     ComLarge comLarge = (ComLarge) o;
-    return Double.compare(comLarge.price, price) == 0;
+    return Double.compare(comLarge.getPrice(), getPrice()) == 0;
   }
 
   @Override

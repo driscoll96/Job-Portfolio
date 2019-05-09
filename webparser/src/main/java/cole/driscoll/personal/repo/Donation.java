@@ -26,7 +26,7 @@ public class Donation extends AbsSpecial {
       return false;
     }
     Donation donation = (Donation) o;
-    return Double.compare(donation.price, price) == 0;
+    return Double.compare(donation.getPrice(), getPrice()) == 0;
   }
 
   @Override

@@ -14,12 +14,9 @@ import org.openqa.selenium.WebElement;
  * Parser that converts and organizes admin web data into an ArrayList.
  */
 
-public class WebParser extends AbsWebScraper {
+public class WebParser {
 
-  /**
-   * List where raw web data is stored.
-   */
-  private List<WebElement> orders;
+  private WebDriver driver;
 
   /**
    * Constructor which takes in the admin Webdriver and calls the web scraper method to get the raw
@@ -28,8 +25,7 @@ public class WebParser extends AbsWebScraper {
    * @param driver - The admin web driver
    */
   public WebParser(WebDriver driver) {
-    super(driver);
-    List<WebElement> orders = super.getWebOrders();
+    this.driver = driver;
   }
 
   /**
@@ -39,6 +35,8 @@ public class WebParser extends AbsWebScraper {
    * @throws ParseException - If conversion of string to int or double fails
    */
   public List<Order> convertWebOrders() throws ParseException {
+    AdminWebScraper scraper = new AdminWebScraper(driver);
+    List<WebElement> orders = scraper.getWebOrders();
     List<Order> convertedOrders = new ArrayList<>();
     Order order;
     Date orderDate, delivery, pickUp;
@@ -49,8 +47,9 @@ public class WebParser extends AbsWebScraper {
       delivery = new SimpleDateFormat("MM/dd/yyyy hh:mma").parse(orderInfo.get(6)+" "+orderInfo.get(8));
       pickUp = new SimpleDateFormat("MM/dd/yyyy hh:mma").parse(orderInfo.get(9)+" "+orderInfo.get(11));
       orders.get(0).click();
-      super.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-      bags = super.getProductListFromOrders();
+      driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+      bags = scraper.getOrderProducts();
+      // TODO: match to the correct customer
       order = new Order(Integer.parseInt(orderInfo.get(0)), orderDate, pickUp, delivery,
           Double.parseDouble(orderInfo.get(14).substring(1)), bags, null);
 
