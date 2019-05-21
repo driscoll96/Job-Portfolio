@@ -34,9 +34,8 @@ public class CustomerPool implements ICustomerPool {
   /**
    * Fill the customer pool with the customer info from the website customer page.
    */
-  public void populatePool(WebDriver driver) {
-    // TODO: Fill this method
-
+  public void populatePool(WebDriver driver, WebParser parser) {
+    customers = parser.convertCustomers();
   }
 
   @Override

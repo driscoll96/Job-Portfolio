@@ -24,6 +24,6 @@ public interface IWebScraper {
    *
    * @return - List of the raw data
    */
-  List<WebElement> getWebOrders();
+  List<WebElement> getWebOrdersOrCustomer();
 
 }

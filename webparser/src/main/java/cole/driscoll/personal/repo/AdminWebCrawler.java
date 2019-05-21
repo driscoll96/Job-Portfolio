@@ -1,7 +1,9 @@
 package cole.driscoll.personal.repo;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -53,6 +55,28 @@ public class AdminWebCrawler extends AbsWebCrawler {
     dateStart.sendKeys("07/01/2018");
     super.getDriver().findElement(By.xpath("//*[@id=\"content\"]/main/div/div[2]/form/div[9]/button")).click();
     super.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+  }
+
+  public void goToCustomerPage() {
+    signIn();
+    super.getDriver().findElement(By.xpath("//*[@id=\"content\"]/main/aside/div[2]/ul/li[2]/ul/li[1]/a")).click();
+    super.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    JavascriptExecutor js = (JavascriptExecutor) super.getDriver();
+    js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+    super.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+  }
+
+  public void goToCustomersTopOrderSummary(WebElement totalSpentLink) {
+    totalSpentLink.click();
+    super.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    super.getDriver().findElement(By.xpath("//*[@id=\"zone{id}\"]/table/tbody/tr/td[1]/a")).click();
+    super.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    goToCustomerPage();
+  }
+
+  public void goToCustomerInfo(List<WebElement> customer) {
+    List<WebElement> dropDownMenu = customer.get(8).findElement(By.className("dropdown-menu")).findElements(By.tagName("li"));
+    dropDownMenu.get(2).click();
   }
 }
 

@@ -75,12 +75,30 @@ public class TypeIdentifier {
    * @return - New customer instance
    */
   public AbsCustomer identifyCustomerType(List<AbsProduct> products, String firstName,
-      String lastName, String email, String phoneNum, String mobileCarrier, Address address) {
+      String lastName, String email, String phoneNum, int Id, Address address) {
     for (AbsProduct product : products) {
       if (product instanceof AbsCommercialBag) {
-        return new CommercialCustomer(firstName, lastName, email, phoneNum, mobileCarrier, address);
+        return new CommercialCustomer(firstName, lastName, email, phoneNum, Id, address);
       }
     }
-    return new NonCommercialCustomer(firstName, lastName, email, phoneNum, mobileCarrier, address);
+    return new NonCommercialCustomer(firstName, lastName, email, phoneNum, Id, address);
+  }
+
+  /**
+   * Identify the instance of the customer based on full name.
+   *
+   * @param firstName - First name of customer
+   * @param lastName - Last name of customer
+   * @param customers - Pool of customers
+   * @return - Customer who placed the given order
+   */
+  public AbsCustomer identifyCustomerWithOrder(String firstName, String lastName, List<AbsCustomer> customers) {
+    for (int i = 0; i < customers.size(); i++) {
+      if (customers.get(i).getFirstName().equals(firstName) &&
+          customers.get(i).getLastName().equals(lastName)) {
+        return customers.get(i);
+      }
+    }
+    return null;
   }
 }

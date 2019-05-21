@@ -16,9 +16,9 @@ public class CustomerPoolTest {
   @Before
   public void setUp() throws Exception {
     customer1 = new CommercialCustomer("c", "d", "d@gmail.com",
-        "3456872234", "AT&T", new Address("123", "s", "WA", "123013"));
+        "3456872234", 1234, new Address("123", "s", "WA", "123013"));
     customer2 = new NonCommercialCustomer("l", "d", "l@gmail.com",
-        "3456322234", "AT&T", new Address("13", "c", "WA", "123013"));
+        "3456322234", 123, new Address("13", "c", "WA", "123013"));
     customers = new ArrayList<>();
     customers.add(customer1);
     customers.add(customer2);

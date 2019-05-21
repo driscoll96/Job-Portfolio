@@ -22,7 +22,7 @@ public class OrderTest {
     products.add(bag);
     products.add(dress);
     customer = new CommercialCustomer("c", "d", "d@gmail.com",
-        "3456872234", "AT&T", new Address("123", "s", "WA", "123013"));
+        "3456872234", 123, new Address("123", "s", "WA", "123013"));
     order = new Order(1101, new Date(1111), new Date(2222), new Date(3333), 49.99, products, customer);
   }
 
@@ -59,7 +59,7 @@ public class OrderTest {
   @Test
   public void getCustomer() {
     assertEquals(order.getCustomer(), new CommercialCustomer("c", "d", "d@gmail.com",
-        "3456872234", "AT&T", new Address("123", "s", "WA", "123013")));
+        "3456872234", 123, new Address("123", "s", "WA", "123013")));
   }
 
   @Test

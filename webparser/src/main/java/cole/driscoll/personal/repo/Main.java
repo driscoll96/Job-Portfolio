@@ -10,29 +10,34 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Main {
 
-  public static void main(String[] args) throws ParseException {
+  public static void main(String[] args)
+      throws ParseException, ProductsNotUpdatedException {
     System.setProperty("webdriver.chrome.driver", "C:\\Users\\User\\OneDrive\\Job App Stuff\\chromedriver_win32 (1)\\chromedriver.exe");
     WebDriver adminDriver = new ChromeDriver();
     adminDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     WebDriver airTableDriver = new ChromeDriver();
     airTableDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-    AbsWebCrawler adminCrawler = new AdminWebCrawler(adminDriver);
-    AbsWebCrawler airtableCrawler = new AirtableWebCrawler(airTableDriver);
+    AdminWebCrawler adminCrawler = new AdminWebCrawler(adminDriver);
+    AirtableWebCrawler airtableCrawler = new AirtableWebCrawler(airTableDriver);
     adminCrawler.goToProductPage();
     airtableCrawler.goToProductPage();
     CheckForUpdate check = new CheckForUpdate(adminDriver, airTableDriver);
     if (!check.sameProducts()) {
-      System.out.println("There has been updates to products types on the admin page. Contact "
-          + "coledriscoll@gmail.com to request an update to this program. Program Terminated");
-      adminDriver.close();
+      throw new ProductsNotUpdatedException("There has been updates to products types on the admin page. Contact "
+          + "coledriscoll@gmail.com to request an update to this program. Program Terminated", adminDriver, airTableDriver);
+    }
+    adminCrawler.goToCustomerPage();
+    CustomerPool pool = new CustomerPool();
+    WebParser parser = new WebParser(adminDriver);
+    pool.populatePool(adminDriver, parser);
+    adminCrawler.goToOrderspage();
+    try {
+      List<Order> convertedOrders = parser.convertWebOrders(pool.getCustomers());
+    } catch (NoCustomerFoundException e) {
       airTableDriver.close();
       System.exit(1);
     }
-    adminCrawler.goToOrderspage();
-    // TODO: Scrape/parse the customer list first then get the orders
-    WebParser parser = new WebParser(adminDriver);
-    List<Order> convertedOrders = parser.convertWebOrders();
-
+    // TODO: Put orders in Airtable
 
   }
 

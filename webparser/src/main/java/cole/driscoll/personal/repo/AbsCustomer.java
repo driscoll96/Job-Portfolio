@@ -35,9 +35,9 @@ public abstract class AbsCustomer implements ICustomer {
   private String phoneNum;
 
   /**
-   * The mobile carrier used by the customers.
+   * Customer Id number.
    */
-  private String mobileCarrier;
+  private int Id;
 
   /**
    * Address info of the customer.
@@ -52,16 +52,16 @@ public abstract class AbsCustomer implements ICustomer {
    * @param lastName - Last name.
    * @param email - Email address.
    * @param phoneNum - Phone number.
-   * @param mobileCarrier - Mobile carrier used by the customers.
+   * @param Id - Customer Id number.
    * @param address - Address info of the customer.
    */
-  public AbsCustomer(String firstName, String lastName, String email, String phoneNum, String mobileCarrier,
+  public AbsCustomer(String firstName, String lastName, String email, String phoneNum, int Id,
       Address address) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
     this.phoneNum = phoneNum;
-    this.mobileCarrier = mobileCarrier;
+    this.Id = Id;
     this.address = address;
     this.orders = new ArrayList<>();
   }
@@ -86,8 +86,8 @@ public abstract class AbsCustomer implements ICustomer {
     return phoneNum;
   }
 
-  public String getMobileCarrier() {
-    return mobileCarrier;
+  public int getId() {
+    return Id;
   }
 
   public Address getAddress() {
@@ -108,12 +108,12 @@ public abstract class AbsCustomer implements ICustomer {
         Objects.equals(firstName, that.firstName) &&
         Objects.equals(lastName, that.lastName) &&
         Objects.equals(email, that.email) &&
-        Objects.equals(mobileCarrier, that.mobileCarrier) &&
+        Objects.equals(Id, that.Id) &&
         Objects.equals(address, that.address);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(orders, firstName, lastName, email, phoneNum, mobileCarrier, address);
+    return Objects.hash(orders, firstName, lastName, email, phoneNum, Id, address);
   }
 }
