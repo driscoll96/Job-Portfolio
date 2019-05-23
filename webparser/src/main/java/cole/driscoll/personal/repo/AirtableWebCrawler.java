@@ -1,12 +1,9 @@
 package cole.driscoll.personal.repo;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AirtableWebCrawler extends AbsWebCrawler {
 
@@ -23,21 +20,12 @@ public class AirtableWebCrawler extends AbsWebCrawler {
   public void goToProductPage() {
     signIn();
     super.getDriver().get("https://airtable.com/tbluxbhofupfVSAAD/viwUw62qdfp9mri8v?blocks=hide");
-    // TODO: Figure out why xpath for services tab on airtable page isn't working
-    /*super.getDriver().findElement(By.xpath("//*[@id=\"homeScreen\"]/div[2]/div/div[2]/div/div[2]/div/div[2]/div[1]/div/div[1]/a/div")).click();
-    super.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-    //System.out.println(super.getDriver().findElement(By.xpath("")).getText());
-    super.getDriver().findElement(By.id("tbluxbhofupfVSAAD")).click();
-    //services.findElement(By.tagName("a")).click();
-    super.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);*/
   }
 
   @Override
   public void signIn() {
     super.getDriver().get("https://airtable.com/login");
-    super.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-    super.getDriver().manage().window().maximize();
-    super.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    super.maxWindow();
     WebElement username = super.getDriver().findElement(By.xpath("//*[@id=\"sign-in-form-fields-root\"]/div/label[1]/input"));
     username.clear();
     username.sendKeys("loopielaundry@gmail.com");

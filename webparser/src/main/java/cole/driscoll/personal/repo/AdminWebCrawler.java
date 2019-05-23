@@ -24,9 +24,7 @@ public class AdminWebCrawler extends AbsWebCrawler {
   @Override
   public void goToProductPage() {
     super.getDriver().get("https://www.loopie.us/admin/login.php");
-    super.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-    super.getDriver().manage().window().maximize();
-    super.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    super.maxWindow();
     super.getDriver().findElement(
         By.xpath("//*[@id=\"content\"]/main/div/div[1]/div/div[1]/form/div/span/button")).click();
     super.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -40,6 +38,7 @@ public class AdminWebCrawler extends AbsWebCrawler {
   @Override
   public void signIn() {
     super.getDriver().get("https://www.loopie.us/admin/login.php");
+    super.maxWindow();
     super.getDriver().findElement(By.name("p_username")).sendKeys("Admin");
     super.getDriver().findElement(By.name("p_password")).sendKeys("admin456");
     super.getDriver().findElement(By.xpath("//*[@id=\"login_form\"]/div[3]/button")).click();
@@ -59,11 +58,29 @@ public class AdminWebCrawler extends AbsWebCrawler {
 
   public void goToCustomerPage() {
     signIn();
+    super.getDriver().findElement(By.xpath("//*[@id=\"content\"]/main/aside/div[2]/ul/li[2]")).click();
+    super.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     super.getDriver().findElement(By.xpath("//*[@id=\"content\"]/main/aside/div[2]/ul/li[2]/ul/li[1]/a")).click();
     super.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-    JavascriptExecutor js = (JavascriptExecutor) super.getDriver();
+    try {
+      long lastHeight = (long) ((JavascriptExecutor) super.getDriver()).executeScript("return document.body.scrollHeight");
+
+      while (true) {
+        ((JavascriptExecutor) super.getDriver()).executeScript("window.scrollTo(0, document.body.scrollHeight);");
+        Thread.sleep(2000);
+
+        long newHeight = (long) ((JavascriptExecutor) super.getDriver()).executeScript("return document.body.scrollHeight");
+        if (newHeight == lastHeight) {
+          break;
+        }
+        lastHeight = newHeight;
+      }
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    /*JavascriptExecutor js = (JavascriptExecutor) super.getDriver();
     js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-    super.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    super.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);*/
   }
 
   public void goToCustomersTopOrderSummary(WebElement totalSpentLink) {
@@ -71,7 +88,6 @@ public class AdminWebCrawler extends AbsWebCrawler {
     super.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     super.getDriver().findElement(By.xpath("//*[@id=\"zone{id}\"]/table/tbody/tr/td[1]/a")).click();
     super.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-    goToCustomerPage();
   }
 
   public void goToCustomerInfo(List<WebElement> customer) {

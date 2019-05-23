@@ -38,6 +38,7 @@ public class Main {
       System.exit(1);
     }
     // TODO: Put orders in Airtable
+    airtableCrawler.goToOrdersPageAfterLoggedIn();
 
   }
 

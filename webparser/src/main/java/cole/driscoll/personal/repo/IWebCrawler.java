@@ -16,4 +16,9 @@ public interface IWebCrawler {
    * Goes to the orders page of the website.
    */
   void goToOrderspage();
+
+  /**
+   * Maximizes the window of the WebDriver.
+   */
+  void maxWindow();
 }
