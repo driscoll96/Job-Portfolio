@@ -78,9 +78,6 @@ public class AdminWebCrawler extends AbsWebCrawler {
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
-    /*JavascriptExecutor js = (JavascriptExecutor) super.getDriver();
-    js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-    super.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);*/
   }
 
   public void goToCustomersTopOrderSummary(WebElement totalSpentLink) {
@@ -90,8 +87,9 @@ public class AdminWebCrawler extends AbsWebCrawler {
     super.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
   }
 
-  public void goToCustomerInfo(List<WebElement> customer) {
-    List<WebElement> dropDownMenu = customer.get(8).findElement(By.className("dropdown-menu")).findElements(By.tagName("li"));
+  public void goToCustomerInfo(WebElement customerEditLink) {
+    customerEditLink.click();
+    List<WebElement> dropDownMenu = customerEditLink.findElement(By.className("dropdown-menu")).findElements(By.tagName("li"));
     dropDownMenu.get(2).click();
   }
 }

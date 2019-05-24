@@ -85,7 +85,7 @@ public class WebParser {
       crawler.goToCustomersTopOrderSummary(columns.get(7));
       List<AbsProduct> customerProducts = adminScraper.getOrderProducts();
       crawler.goToCustomerPage();
-      crawler.goToCustomerInfo(columns);
+      //crawler.goToCustomerInfo(columns);
       customer = identifier.identifyCustomerType(customerProducts, columns.get(2).getText(), columns.get(3).getText(),
           adminScraper.getCustomerEmail(), columns.get(4).getText(), Integer.parseInt(columns.get(1).getText()),
           new Address(columns.get(5).getText(), columns.get(6).getText(), adminScraper.getState(), adminScraper.getZip()));

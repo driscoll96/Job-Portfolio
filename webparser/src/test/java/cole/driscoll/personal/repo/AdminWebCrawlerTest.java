@@ -57,22 +57,37 @@ public class AdminWebCrawlerTest {
 
   @Test
   public void goToCustomersTopOrderSummary() throws InterruptedException {
-    // TODO: How to one-by-one go through a customer's 1st order and then go to next customer (stale element workaround)
     crawler.goToCustomerPage();
-    List<WebElement> customers = driver.findElement(By.tagName("tbody")).findElements(By.tagName("tr"));
-    for (int i = 0; i < 3; i++) {
-      crawler.goToCustomersTopOrderSummary(customers.get(i).findElements(By.tagName("td")).get(7).findElement(By.tagName("a")));
+    WebElement customer;
+    String orderNum;
+    for (int i = 0; i < 10; i++) {
+      customer = driver.findElement(By.tagName("tbody")).findElements(By.tagName("tr")).get(i);
+      crawler.goToCustomersTopOrderSummary(customer.findElements(By.tagName("td")).get(7).findElement(By.tagName("a")));
       TimeUnit.SECONDS.sleep(2);
       String summaryUrl = driver.getCurrentUrl();
       driver.findElement(By.xpath("//*[@id=\"content\"]/main/div/div[2]/div[2]/div/p/span[2]/a")).click();
       driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-      String orderNum = driver.findElement(By.xpath("//*[@id=\"zone{id}\"]/table/tbody/tr/td[1]/a")).getText();
+      orderNum = driver.findElement(By.xpath("//*[@id=\"zone{id}\"]/table/tbody/tr/td[1]/a")).getText();
       crawler.goToCustomerPage();
       assertEquals(summaryUrl, "https://www.loopie.us/admin/orders.php?action=edit&id="+orderNum);
     }
   }
 
   @Test
-  public void goToCustomerInfo() {
+  public void goToCustomerInfo() throws InterruptedException {
+    crawler.goToCustomerPage();
+    WebElement customer;
+    String customerNum;
+    for (int i = 0; i < 1; i++) {
+      customer = driver.findElement(By.tagName("tbody")).findElements(By.tagName("tr")).get(i);
+      customerNum = customer.findElements(By.tagName("td")).get(8).findElement(By.tagName("a")).getText();
+      crawler.goToCustomersTopOrderSummary(
+          customer.findElements(By.tagName("td")).get(8).findElement(By.tagName("a")));
+      driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+      String summaryUrl = driver.getCurrentUrl();
+      crawler.goToCustomerPage();
+      assertEquals(summaryUrl,
+          "https://www.loopie.us/admin/customers.php?action=edit&id=" + customerNum);
+    }
   }
 }
