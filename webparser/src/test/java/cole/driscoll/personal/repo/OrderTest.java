@@ -17,7 +17,7 @@ public class OrderTest {
   @Before
   public void setUp() throws Exception {
     products = new ArrayList<>();
-    YellowBag bag = new YellowBag();
+    DuffelBag bag = new DuffelBag();
     Dress dress = new Dress(true);
     products.add(bag);
     products.add(dress);

@@ -1,6 +1,5 @@
 package cole.driscoll.personal.repo;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -27,12 +26,12 @@ public class AdminWebCrawler extends AbsWebCrawler {
     super.maxWindow();
     super.getDriver().findElement(
         By.xpath("//*[@id=\"content\"]/main/div/div[1]/div/div[1]/form/div/span/button")).click();
-    super.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    super.getDriver().manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
     super.getDriver().findElement(By.xpath("/html/body/div/nav/div/ul/li[3]/a")).click();
-    super.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    super.getDriver().manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
     super.getDriver().findElement(By.xpath("//*[@id=\"zip\"]")).sendKeys("98103");
     super.getDriver().findElement(By.xpath("//*[@id=\"zip_button\"]")).click();
-    super.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    super.getDriver().manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
   }
 
   @Override
@@ -43,7 +42,7 @@ public class AdminWebCrawler extends AbsWebCrawler {
     super.getDriver().findElement(By.name("p_password")).sendKeys("admin456");
     super.getDriver().findElement(By.xpath("//*[@id=\"login_form\"]/div[3]/button")).click();
     super.getDriver().findElement(By.xpath("//*[@id=\"content\"]/main/aside/div[2]/ul/li[3]/a")).click();
-    super.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    super.getDriver().manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
   }
 
   @Override
@@ -53,15 +52,13 @@ public class AdminWebCrawler extends AbsWebCrawler {
     dateStart.clear();
     dateStart.sendKeys("07/01/2018");
     super.getDriver().findElement(By.xpath("//*[@id=\"content\"]/main/div/div[2]/form/div[9]/button")).click();
-    super.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    super.getDriver().manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
   }
 
   public void goToCustomerPage() {
     signIn();
     super.getDriver().findElement(By.xpath("//*[@id=\"content\"]/main/aside/div[2]/ul/li[2]")).click();
-    super.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     super.getDriver().findElement(By.xpath("//*[@id=\"content\"]/main/aside/div[2]/ul/li[2]/ul/li[1]/a")).click();
-    super.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     try {
       long lastHeight = (long) ((JavascriptExecutor) super.getDriver()).executeScript("return document.body.scrollHeight");
 
@@ -82,15 +79,20 @@ public class AdminWebCrawler extends AbsWebCrawler {
 
   public void goToCustomersTopOrderSummary(WebElement totalSpentLink) {
     totalSpentLink.click();
-    super.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     super.getDriver().findElement(By.xpath("//*[@id=\"zone{id}\"]/table/tbody/tr/td[1]/a")).click();
-    super.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
   }
 
-  public void goToCustomerInfo(WebElement customerEditLink) {
-    customerEditLink.click();
-    List<WebElement> dropDownMenu = customerEditLink.findElement(By.className("dropdown-menu")).findElements(By.tagName("li"));
-    dropDownMenu.get(2).click();
+  /**
+   * Goes to the a customer's information page using a customer number based on its position in the
+   * table (ascending top to bottom).
+   *
+   * @param customerNum - Position in the table (ascending top to bottom)
+   */
+  public void goToCustomerInfo(int customerNum) {
+    goToCustomerPage();
+    super.getDriver().findElement(
+        By.tagName("tbody")).findElements(By.tagName("tr")).get(customerNum).findElements
+        (By.tagName("td")).get(1).findElement(By.tagName("a")).click();
   }
 }
 

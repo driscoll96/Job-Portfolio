@@ -33,16 +33,16 @@ public class AirtableWebCrawler extends AbsWebCrawler {
     password.clear();
     password.sendKeys("loopie2018");
     super.getDriver().findElement(By.xpath("//*[@id=\"sign-in-form-fields-root\"]/div/label[3]/input")).click();
-    super.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    super.getDriver().manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
   }
 
   @Override
   public void goToOrderspage() {
     signIn();
     super.getDriver().findElement(By.xpath("//*[@id=\"homeScreen\"]/div[2]/div/div[2]/div/div[2]/div/div[2]/div[1]/div/div[1]/a/div")).click();
-    super.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    super.getDriver().manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
     super.getDriver().findElement(By.xpath("//*[@id=\"tableTabsContainer\"]/div/div[2]/div[2]/div[1]")).click();
-    super.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    super.getDriver().manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
   }
 
   public void goToOrdersPageAfterLoggedIn() {

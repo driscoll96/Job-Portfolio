@@ -18,18 +18,27 @@ public class WashFold extends AbsNonCommercialBag {
   private boolean notDelivered;
 
   /**
+   * True if ordered by a hotel.
+   */
+  private boolean orderedByHotel;
+
+  /**
    * Constructor that tells if customer did delivery and pickup.
    *
    * @param discount - True if customer gets discount
    */
-  public WashFold(boolean discount) {
+  public WashFold(boolean discount, boolean orderedByHotel) {
     this.notDelivered = discount;
+    this.orderedByHotel = orderedByHotel;
   }
 
   @Override
   public double getPrice() {
     if (notDelivered) {
       return price - 5.00;
+    }
+    if (orderedByHotel) {
+      return price + 10.00;
     }
     return price;
   }

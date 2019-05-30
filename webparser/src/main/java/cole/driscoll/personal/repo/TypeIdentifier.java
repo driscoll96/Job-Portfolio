@@ -14,10 +14,12 @@ public class TypeIdentifier {
    * @return - Instance of the correct product type
    */
   public AbsProduct identifyProductType(String productWebName) {
-    if (productWebName.equals("Loopie Wash & Fold Service ( Per bag)")) {
-      return new WashFold(false);
+    if (productWebName.equals("Loopie Wash & Fold Service")) {
+      return new WashFold(false, false);
     } else if (productWebName.equals("Commercial Order (Regular)")) {
       return new ComRegular();
+    } else if (productWebName.equals("Wash & Fold Service (Hotel)")) {
+      return new WashFold(false, true);
     } else if (productWebName.equals("Commercial Order (Large bag)")) {
       return new ComLarge();
     } else if (productWebName.equals("Wash & Dry (No Fold!)")) {
@@ -39,9 +41,9 @@ public class TypeIdentifier {
     } else if (productWebName.equals("Blazer / Suit Jacket / Sport Coat")) {
       return new BlazerJacketCoat(false);
     } else if (productWebName.equals("Wash & Fold (Self Drop Off & pickup)")) {
-      return new WashFold(true);
-    } else if (productWebName.equals("Standard 32\" x 22\" nylon Loopie bag (Yellow)")) {
-      return new YellowBag();
+      return new WashFold(true, false);
+    } else if (productWebName.equals("Loopie Duffel Bag")) {
+      return new DuffelBag();
     } else if (productWebName.equals("Stain & Odor (Lavender Eucalyptus)")) {
       return new StainOdor(true);
     } else if (productWebName.equals("Sensitive Skin (Fresh Scent natural laundry detergent)")) {

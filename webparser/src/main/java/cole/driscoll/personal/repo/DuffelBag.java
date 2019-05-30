@@ -5,12 +5,12 @@ import java.util.Objects;
 /**
  * Yellow bag product type.
  */
-public class YellowBag extends AbsBag {
+public class DuffelBag extends AbsBag {
 
   /**
    * Base Price of the product.
    */
-  private final double price = 4.99;
+  private final double price = 12.99;
 
   @Override
   public double getPrice() {
@@ -22,10 +22,10 @@ public class YellowBag extends AbsBag {
     if (this == o) {
       return true;
     }
-    if (!(o instanceof YellowBag)) {
+    if (!(o instanceof DuffelBag)) {
       return false;
     }
-    YellowBag yellowBag = (YellowBag) o;
+    DuffelBag yellowBag = (DuffelBag) o;
     return Double.compare(yellowBag.price, price) == 0;
   }
 
