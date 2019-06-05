@@ -19,7 +19,8 @@ public class AdminWebCrawlerTest {
 
   @Before
   public void setUp() throws Exception {
-    System.setProperty("webdriver.chrome.driver", "C:\\Users\\User\\OneDrive\\Job App Stuff\\chromedriver_win32 (1)\\chromedriver.exe");
+    System.setProperty("webdriver.chrome.driver",
+        "C:\\Users\\User\\OneDrive\\Job App Stuff\\chromedriver_win32 (1)\\chromedriver.exe");
     driver = new ChromeDriver();
     driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
     crawler = new AdminWebCrawler(driver);
