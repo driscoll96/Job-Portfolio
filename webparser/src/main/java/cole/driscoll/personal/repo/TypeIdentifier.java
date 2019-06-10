@@ -18,6 +18,8 @@ public class TypeIdentifier {
       return new WashFold(false, false);
     } else if (productWebName.equals("Commercial Order (Regular)")) {
       return new ComRegular();
+    } else if (productWebName.equals("Standard 32\" x 22\" nylon Loopie bag (Yellow)")) {
+      return new YellowBag();
     } else if (productWebName.equals("Wash & Fold Service (Hotel)")) {
       return new WashFold(false, true);
     } else if (productWebName.equals("Commercial Order (Large bag)")) {
@@ -31,7 +33,7 @@ public class TypeIdentifier {
     } else if (productWebName.equals("Down Comforters (Queen-King)")) {
       return new ComforterQueenKing(true);
     } else if (productWebName.equals("Down Comforters (Twin-Full)")) {
-      return new ComforterQueenKing(true);
+      return new ComforterTwinFull(true);
     } else if (productWebName.equals("Shirt or Blouse (Laundered & Pressed)")) {
       return new ShirtBlouse(false);
     } else if (productWebName.equals("Suit Special (2 Shirts, 1 Pant, 1 Suit Jacket or Blazer)")) {

@@ -90,4 +90,14 @@ public class AdminWebCrawlerTest {
       crawler.goToCustomerPage();
     }
   }
+
+  @Test
+  public void goToOrderPage() {
+    crawler.goToOrderspage();
+    for (int i = 0; i < 11; i++) {
+      crawler.goToOrderPage(i);
+      int orderNum = Integer.parseInt(driver.findElement(By.xpath("//*[@id=\"content\"]/main/div/div[2]/div[1]/div/p/span[2]")).getText());
+      assertEquals("https://www.loopie.us/admin/orders.php?action=edit&id=" + orderNum, driver.getCurrentUrl());
+    }
+  }
 }

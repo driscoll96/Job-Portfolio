@@ -14,12 +14,13 @@ public class Main {
       throws ParseException, ProductsNotUpdatedException {
     System.setProperty("webdriver.chrome.driver", "C:\\Users\\User\\OneDrive\\Job App Stuff\\chromedriver_win32 (1)\\chromedriver.exe");
     WebDriver adminDriver = new ChromeDriver();
-    adminDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    adminDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     WebDriver airTableDriver = new ChromeDriver();
-    airTableDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    airTableDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     AdminWebCrawler adminCrawler = new AdminWebCrawler(adminDriver);
     AirtableWebCrawler airtableCrawler = new AirtableWebCrawler(airTableDriver);
     adminCrawler.goToProductPage();
+    adminDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);;
     airtableCrawler.goToProductPage();
     CheckForUpdate check = new CheckForUpdate(adminDriver, airTableDriver);
     if (!check.sameProducts()) {
