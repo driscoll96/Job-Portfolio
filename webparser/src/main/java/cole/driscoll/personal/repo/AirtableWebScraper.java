@@ -30,7 +30,12 @@ public class AirtableWebScraper extends AbsWebScraper {
   }
 
   @Override
-  public List<WebElement> getWebOrdersOrCustomer() {
+  public List<WebElement> getWebOrders() {
+    return null;
+  }
+
+  @Override
+  public List<WebElement> getCustomers() {
     return null;
   }
 

@@ -53,20 +53,40 @@ public class AdminWebScraper extends AbsWebScraper {
   }
 
   @Override
-  public List<WebElement> getWebOrdersOrCustomer() {
+  public List<WebElement> getWebOrders() {
     return super.getDriver().findElement(By.tagName("tbody")).findElements(By.tagName("tr"));
   }
 
+  @Override
+  public List<WebElement> getCustomers() {
+    return super.getDriver().findElement(By.tagName("tbody")).findElements(By.tagName("tr")).subList(0, 294);
+  }
+
+  /**
+   * Gets the customer email from customer's info page.
+   *
+   * @return - Web Element which holds the email address
+   */
   public String getCustomerEmail() {
-    return super.getDriver().findElement(By.xpath("//*[@id=\"customer_form\"]/div[3]/div/div/input")).getText();
+    return super.getDriver().findElement(By.xpath("//*[@id=\"customer_form\"]/div[3]/div/div/input")).getAttribute("value");
   }
 
+  /**
+   * Gets the zip code from the customer's info page.
+   *
+   * @return - Web Element which holds the zip code
+   */
   public String getZip() {
-    return super.getDriver().findElement(By.xpath("//*[@id=\"customer_form\"]/div[7]/div[1]/div/input")).getText();
+    return super.getDriver().findElement(By.xpath("//*[@id=\"customer_form\"]/div[7]/div[1]/div/input")).getAttribute("value");
   }
 
+  /**
+   * Gets the state from the customer's info page.
+   *
+   * @return - Web Element which holds the state
+   */
   public String getState() {
-    return super.getDriver().findElement(By.xpath("//*[@id=\"customer_form\"]/div[8]/div/div/input")).getText();
+    return super.getDriver().findElement(By.xpath("//*[@id=\"customer_form\"]/div[8]/div/div/input")).getAttribute("value");
   }
 
 }
