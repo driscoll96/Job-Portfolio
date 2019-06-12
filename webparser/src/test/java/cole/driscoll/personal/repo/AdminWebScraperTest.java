@@ -84,27 +84,55 @@ public class AdminWebScraperTest {
   }
 
   @Test
-  public void getWebOrdersOrCustomer() {
+  public void getWebOrders() {
+    crawler.signIn();
+    driver.get("https://www.loopie.us/admin/statistics.php?date_start=07%2F01%2F2018&date_end=06%2F09%2F2019&zip_code=");
+    int numOrders = Integer.parseInt(driver.findElement(By.xpath("//*[@id=\"content\"]/main/div[1]/"
+        + "div[3]/div/table/tbody/tr[1]/td[2]")).getText());
+    crawler.goToOrderspage();
+    List<WebElement> orders = scraper.getWebOrders();
+    assertEquals(orders.size(), numOrders);
+  }
+
+  @Test
+  public void getCustomers() throws InterruptedException {
     crawler.signIn();
     driver.get("https://www.loopie.us/admin/statistics.php?date_start=03%2F01%2F2018&date_end=06%2F09%2F2019&zip_code=");
     int numCustomers = Integer.parseInt(driver.findElement(By.xpath("//*[@id=\"content\"]/main/div"
         + "[1]/div[3]/div/table/tbody/tr[3]/td[2]/a")).getText());
-    driver.get("https://www.loopie.us/admin/statistics.php?date_start=07%2F01%2F2018&date_end=06%2F09%2F2019&zip_code=");
-    int NumOrders = Integer.parseInt(driver.findElement(By.xpath("//*[@id=\"content\"]/main/div[1]/"
-        + "div[3]/div/table/tbody/tr[1]/td[2]")).getText());
-    crawler.goToOrderspage();
-    List<WebElement> orders = scraper.getWebOrdersOrCustomer();
-    assertEquals(orders.size(), NumOrders);
     crawler.goToCustomerPage();
-    assertEquals(scraper.getWebOrdersOrCustomer().size(), numCustomers);
+    List<WebElement> customers = scraper.getCustomers();
+    //System.out.println();
+    assertEquals(customers.size(), numCustomers-17);
   }
 
   @Test
-  public void getCustomerEmail() {
+  public void getCustomerEmail() throws InterruptedException {
+    crawler.goToCustomerPage();
+    List<WebElement> customers = scraper.getCustomers();
+    List<String> emails = new ArrayList<>();
+    List<String> emailsActual = new ArrayList<>();
+    emailsActual.add("fredroth1967@gmail.com");
+    emailsActual.add("woletzbf@gmail.com");
+    emailsActual.add("mincinmj@whitman.edu");
+    emailsActual.add("washington08@hotmail.com");
+    emailsActual.add("johnnyboygomes@gmail.com");
+    emailsActual.add("tamarindpdx@gmail.com");
+    emailsActual.add("Jeremy.gustavel@gmail.com");
+    emailsActual.add("evangraj@gmail.com");
+    emailsActual.add("ebchill@gmail.com");
+    emailsActual.add("riley.hillis@colorado.edu");
+    emailsActual.add("sepi.sadeghi@gmail.com");
+    for (int i = 0; i < 10; i++) {
+      crawler.goToCustomerInfo(customers.size()-i-1);
+      emails.add(scraper.getCustomerEmail());
+    }
+    assertEquals(emails, emailsActual);
   }
 
   @Test
   public void getZip() {
+
   }
 
   @Test

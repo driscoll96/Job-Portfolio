@@ -52,11 +52,9 @@ public abstract class AbsCustomer implements ICustomer {
    * @param lastName - Last name.
    * @param email - Email address.
    * @param phoneNum - Phone number.
-   * @param Id - Customer Id number.
    * @param address - Address info of the customer.
    */
-  public AbsCustomer(String firstName, String lastName, String email, String phoneNum, int Id,
-      Address address) {
+  public AbsCustomer(String firstName, String lastName, String email, String phoneNum, Address address) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
@@ -84,10 +82,6 @@ public abstract class AbsCustomer implements ICustomer {
 
   public String getPhoneNum() {
     return phoneNum;
-  }
-
-  public int getId() {
-    return Id;
   }
 
   public Address getAddress() {

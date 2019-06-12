@@ -77,13 +77,13 @@ public class TypeIdentifierTest {
     products.add(new WashFold(false, false));
     products.add(new WashDry());
     NonCommercialCustomer customer = new NonCommercialCustomer("c", "d", "cd@GMAIL.COM",
-        "1234567890", 123, new Address("street", "seattle", "WA", "90102"));
+        "1234567890", new Address("street", "seattle", "WA", "90102"));
     assertEquals(identifier.identifyCustomerType(products, "c", "d", "cd@GMAIL.COM",
         "1234567890", 123, new Address("street", "seattle", "WA", "90102")), customer);
     List<AbsProduct> productsCom = new ArrayList<>();
     productsCom.add(new ComRegular());
-    CommercialCustomer customerCom = new CommercialCustomer("c", "d", "cd@GMAIL.COM", "1234567890",
-        123, new Address("street", "seattle", "WA", "90102"));
+    CommercialCustomer customerCom = new CommercialCustomer("c", "d", "cd@GMAIL.COM",
+        "1234567890", new Address("street", "seattle", "WA", "90102"));
     assertEquals(identifier.identifyCustomerType(productsCom, "c", "d", "cd@GMAIL.COM",
         "1234567890", 123, new Address("street", "seattle", "WA", "90102")), customerCom);
   }
@@ -92,12 +92,12 @@ public class TypeIdentifierTest {
   public void identifyCustomerWithOrder() {
     List<AbsCustomer> customers = new ArrayList<>();
     customers.add(new NonCommercialCustomer("c", "d", "cd@GMAIL.COM",
-        "1234567890", 123, new Address("street", "seattle", "WA", "90102")));
+        "1234567890", new Address("street", "seattle", "WA", "90102")));
     AbsCustomer customer = new CommercialCustomer("page", "ten", "cd@GMAIL.COM",
-        "1234567890", 123, new Address("street", "seattle", "WA", "90102"));
+        "1234567890", new Address("street", "seattle", "WA", "90102"));
     customers.add(customer);
     customers.add(new CommercialCustomer("ivor", "zal", "cd@GMAIL.COM",
-        "1234567890", 123, new Address("street", "seattle", "WA", "90102")));
+        "1234567890", new Address("street", "seattle", "WA", "90102")));
     assertEquals(identifier.identifyCustomerWithOrder("page", "ten", customers), customer);
   }
 }

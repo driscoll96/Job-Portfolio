@@ -75,18 +75,12 @@ public class AdminWebCrawlerTest {
   }
 
   @Test
-  public void goToCustomerInfo() {
-    crawler.goToCustomerPage();
-    WebElement customer;
-    String customerNum;
-    for (int i = 0; i < 10; i++) {
-      customer = driver.findElement(By.tagName("tbody")).findElements(By.tagName("tr")).get(i);
-      customerNum = customer.findElements(By.tagName("td")).get(1).findElement(By.tagName("a")).getText();
-      System.out.println(customerNum);
+  public void goToCustomerInfo() throws InterruptedException {
+    for (int i = 200; i < 210; i++) {
       crawler.goToCustomerInfo(i);
       String summaryUrl = driver.getCurrentUrl();
       assertEquals(summaryUrl,
-          "https://www.loopie.us/admin/customers.php?action=edit&id=" + customerNum);
+          "https://www.loopie.us/admin/customers.php?action=edit&id=" + i);
       crawler.goToCustomerPage();
     }
   }

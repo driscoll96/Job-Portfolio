@@ -1,8 +1,10 @@
 package cole.driscoll.personal.repo;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -55,16 +57,16 @@ public class AdminWebCrawler extends AbsWebCrawler {
     super.getDriver().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
   }
 
-  public void goToCustomerPage() {
+  public void goToCustomerPage() throws InterruptedException {
     signIn();
     super.getDriver().findElement(By.xpath("//*[@id=\"content\"]/main/aside/div[2]/ul/li[2]")).click();
     super.getDriver().findElement(By.xpath("//*[@id=\"content\"]/main/aside/div[2]/ul/li[2]/ul/li[1]/a")).click();
-    try {
-      long lastHeight = (long) ((JavascriptExecutor) super.getDriver()).executeScript("return document.body.scrollHeight");
+    long lastHeight = (long) ((JavascriptExecutor) super.getDriver()).executeScript("return document.body.scrollHeight");
 
+    try {
       while (true) {
         ((JavascriptExecutor) super.getDriver()).executeScript("window.scrollTo(0, document.body.scrollHeight);");
-        Thread.sleep(8000);
+        Thread.sleep(6000);
 
         long newHeight = (long) ((JavascriptExecutor) super.getDriver()).executeScript("return document.body.scrollHeight");
         if (newHeight == lastHeight) {
@@ -72,11 +74,17 @@ public class AdminWebCrawler extends AbsWebCrawler {
         }
         lastHeight = newHeight;
       }
-    } catch (InterruptedException e) {
+    }
+    catch (InterruptedException e) {
       e.printStackTrace();
     }
   }
 
+  /**
+   * Navigates to a customers top order summary.
+   *
+   * @param totalSpentLink - Link to navigate to the customers orders
+   */
   public void goToCustomersTopOrderSummary(WebElement totalSpentLink) {
     totalSpentLink.click();
     super.getDriver().findElement(By.xpath("//*[@id=\"zone{id}\"]/table/tbody/tr/td[1]/a")).click();
@@ -88,11 +96,9 @@ public class AdminWebCrawler extends AbsWebCrawler {
    *
    * @param customerNum - Position in the table (ascending top to bottom)
    */
-  public void goToCustomerInfo(int customerNum) {
-    goToCustomerPage();
-    super.getDriver().findElement(
-        By.tagName("tbody")).findElements(By.tagName("tr")).get(customerNum).findElements
-        (By.tagName("td")).get(1).findElement(By.tagName("a")).click();
+  public void goToCustomerInfo(int customerNum) throws InterruptedException {
+    signIn();
+    super.getDriver().get("https://www.loopie.us/admin/customers.php?action=edit&id="+customerNum);
   }
 
   /**

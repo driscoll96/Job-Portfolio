@@ -27,7 +27,7 @@ public class Main {
       throw new ProductsNotUpdatedException("There has been updates to products types on the admin page. Contact "
           + "coledriscoll@gmail.com to request an update to this program. Program Terminated", adminDriver, airTableDriver);
     }
-    adminCrawler.goToCustomerPage();
+    //adminCrawler.goToCustomerPage();
     CustomerPool pool = new CustomerPool();
     WebParser parser = new WebParser(adminDriver);
     pool.populatePool(adminDriver, parser);

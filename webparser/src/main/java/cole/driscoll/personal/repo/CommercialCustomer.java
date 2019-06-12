@@ -13,11 +13,9 @@ public class CommercialCustomer extends AbsCustomer {
    * @param lastName - Last name.
    * @param email - Email address.
    * @param phoneNum - Phone number.
-   * @param Id - Customer Id number.
    * @param address - Address info of the customer.
    */
-  public CommercialCustomer(String firstName, String lastName, String email, String phoneNum,
-      int Id, Address address) {
-    super(firstName, lastName, email, phoneNum, Id, address);
+  public CommercialCustomer(String firstName, String lastName, String email, String phoneNum, Address address) {
+    super(firstName, lastName, email, phoneNum, address);
   }
 }

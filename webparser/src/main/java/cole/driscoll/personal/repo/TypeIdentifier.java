@@ -82,10 +82,10 @@ public class TypeIdentifier {
       String lastName, String email, String phoneNum, int Id, Address address) {
     for (AbsProduct product : products) {
       if (product instanceof AbsCommercialBag) {
-        return new CommercialCustomer(firstName, lastName, email, phoneNum, Id, address);
+        return new CommercialCustomer(firstName, lastName, email, phoneNum, address);
       }
     }
-    return new NonCommercialCustomer(firstName, lastName, email, phoneNum, Id, address);
+    return new NonCommercialCustomer(firstName, lastName, email, phoneNum, address);
   }
 
   /**

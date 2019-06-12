@@ -43,7 +43,7 @@ public class WebParser {
    * @throws ParseException - If conversion of string to int or double fails
    */
   public List<Order> convertWebOrders(List<AbsCustomer> customers) throws ParseException, NoCustomerFoundException {
-    List<WebElement> orders = adminScraper.getWebOrdersOrCustomer();
+    List<WebElement> orders = adminScraper.getWebOrders();
     List<Order> convertedOrders = new ArrayList<>();
     Order order;
     Date orderDate, delivery, pickUp;
@@ -76,7 +76,7 @@ public class WebParser {
    */
   public List<AbsCustomer> convertCustomers() {
     List<AbsCustomer> customers = new ArrayList<>();
-    List<WebElement> rawCustomerInfo = adminScraper.getWebOrdersOrCustomer();
+    List<WebElement> rawCustomerInfo = adminScraper.getCustomers();
     List<WebElement> columns;
     AbsCustomer customer;
     AdminWebCrawler crawler = new AdminWebCrawler(driver);
@@ -84,7 +84,7 @@ public class WebParser {
       columns = rawCustomerInfo.get(i).findElements(By.tagName("td"));
       crawler.goToCustomersTopOrderSummary(columns.get(7));
       List<AbsProduct> customerProducts = adminScraper.getOrderProducts();
-      crawler.goToCustomerPage();
+      //crawler.goToCustomerPage();
       //crawler.goToCustomerInfo(columns);
       customer = identifier.identifyCustomerType(customerProducts, columns.get(2).getText(), columns.get(3).getText(),
           adminScraper.getCustomerEmail(), columns.get(4).getText(), Integer.parseInt(columns.get(1).getText()),

@@ -20,10 +20,17 @@ public interface IWebScraper {
   List<AbsProduct> getOrderProducts();
 
   /**
-   * Gets the raw admin web data.
+   * Gets the raw admin order data.
    *
-   * @return - List of the raw data
+   * @return - List of Web Elements containing order data
    */
-  List<WebElement> getWebOrdersOrCustomer();
+  List<WebElement> getWebOrders();
+
+  /**
+   * Gets the raw admin customer data.
+   *
+   * @return - List of Web Elements containing customer info
+   */
+  List<WebElement> getCustomers();
 
 }
