@@ -2,12 +2,10 @@ package cole.driscoll.personal.repo;
 
 import static org.junit.Assert.*;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -89,7 +87,7 @@ public class AdminWebCrawlerTest {
   public void goToOrderPage() {
     crawler.goToOrderspage();
     for (int i = 0; i < 11; i++) {
-      crawler.goToOrderPage(i);
+      crawler.goToOrderInfo(i);
       int orderNum = Integer.parseInt(driver.findElement(By.xpath("//*[@id=\"content\"]/main/div/div[2]/div[1]/div/p/span[2]")).getText());
       assertEquals("https://www.loopie.us/admin/orders.php?action=edit&id=" + orderNum, driver.getCurrentUrl());
     }

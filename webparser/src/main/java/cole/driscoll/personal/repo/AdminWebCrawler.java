@@ -101,13 +101,8 @@ public class AdminWebCrawler extends AbsWebCrawler {
     super.getDriver().get("https://www.loopie.us/admin/customers.php?action=edit&id="+customerNum);
   }
 
-  /**
-   * Goes to the a order's information page using the order number based on its position in the
-   * table (ascending top to bottom).
-   *
-   * @param orderNum - The order number
-   */
-  public void goToOrderPage(int orderNum) {
+  @Override
+  public void goToOrderInfo(int orderNum) {
     goToOrderspage();
     super.getDriver().findElement(
         By.tagName("tbody")).findElements(By.tagName("tr")).get(orderNum).findElements

@@ -40,12 +40,19 @@ public class AirtableWebCrawler extends AbsWebCrawler {
   public void goToOrderspage() {
     signIn();
     super.getDriver().findElement(By.xpath("//*[@id=\"homeScreen\"]/div[2]/div/div[2]/div/div[2]/div/div[2]/div[1]/div/div[1]/a/div")).click();
-    super.getDriver().manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+    super.getDriver().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     super.getDriver().findElement(By.xpath("//*[@id=\"tableTabsContainer\"]/div/div[2]/div[2]/div[1]")).click();
-    super.getDriver().manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+    super.getDriver().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
   }
 
   public void goToOrdersPageAfterLoggedIn() {
     super.getDriver().get("https://airtable.com/tblHSvgxLOgWynMvM/viwCmcPKNZE6nMez3?blocks=hide");
+  }
+
+  @Override
+  public void goToOrderInfo(int orderNum) {
+    goToOrderspage();
+    getDriver().findElement(By.xpath("//*[@id=\"dataLeftPane\"]/div/div[" + orderNum + "]/div[1]/a")).click();
+    getDriver().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
   }
 }

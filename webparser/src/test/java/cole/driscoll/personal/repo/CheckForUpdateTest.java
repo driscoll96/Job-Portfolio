@@ -16,7 +16,8 @@ public class CheckForUpdateTest {
 
   @Before
   public void setUp() throws Exception {
-    System.setProperty("webdriver.chrome.driver", "C:\\Users\\User\\OneDrive\\Job App Stuff\\chromedriver_win32 (1)\\chromedriver.exe");
+    System.setProperty("webdriver.chrome.driver",
+        "C:\\Users\\User\\OneDrive\\Job App Stuff\\chromedriver_win32 (1)\\chromedriver.exe");
     adminDriver = new ChromeDriver();
     adminDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     airTableDriver = new ChromeDriver();

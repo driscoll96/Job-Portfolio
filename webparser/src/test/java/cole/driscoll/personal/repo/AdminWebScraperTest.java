@@ -17,7 +17,7 @@ public class AdminWebScraperTest {
   private WebDriver driver;
   private AdminWebCrawler crawler;
 
-
+  //
   @Before
   public void setUp() throws Exception {
     System.setProperty("webdriver.chrome.driver",
@@ -76,7 +76,7 @@ public class AdminWebScraperTest {
     actualProducts.add(new YellowBag());
     actualProducts.add(new WashFold(false, false));
     for (int i = customers.size()-6; i < customers.size()-1; i++) {
-      crawler.goToOrderPage(i);
+      crawler.goToOrderInfo(i);
       List<AbsProduct> list = scraper.getOrderProducts();
       products.addAll(list);
     }
