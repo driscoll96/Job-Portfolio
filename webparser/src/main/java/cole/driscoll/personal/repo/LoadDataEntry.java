@@ -1,6 +1,6 @@
 package cole.driscoll.personal.repo;
 
-public class LoadDataEntry extends AbsDataEntry implements IDataEntry {
+public class LoadDataEntry extends AbsDataEntry {
 
   /**
    * Fills in the web crawler when an instance is made.

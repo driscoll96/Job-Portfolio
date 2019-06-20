@@ -3,7 +3,7 @@ package cole.driscoll.personal.repo;
 /**
  * Attaches an Airtable web crawler to every data entry class.
  */
-public abstract class AbsDataEntry {
+public abstract class AbsDataEntry implements IDataEntry {
 
   /**
    * Airtable web crawler.

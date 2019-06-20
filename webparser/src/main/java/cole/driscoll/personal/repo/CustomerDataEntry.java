@@ -1,6 +1,6 @@
 package cole.driscoll.personal.repo;
 
-public class CustomerDataEntry extends AbsDataEntry implements IOrderCustomerDataEntry {
+public class CustomerDataEntry extends AbsDataEntry {
 
   /**
    * Fills in the web crawler when an instance is made.
@@ -11,13 +11,7 @@ public class CustomerDataEntry extends AbsDataEntry implements IOrderCustomerDat
     super(crawler);
   }
 
-  @Override
   public void enterPhoneNum(String phone, int entityNum) {
-
-  }
-
-  @Override
-  public void enterName(String name, int entityNum) {
 
   }
 }
