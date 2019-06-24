@@ -1,5 +1,12 @@
 package cole.driscoll.personal.repo;
 
+import cole.driscoll.personal.repo.Crawlers.AirtableWebCrawler;
+import cole.driscoll.personal.repo.CustomerInfo.StreetAddress;
+import cole.driscoll.personal.repo.CustomerInfo.NonCommercialCustomer;
+import cole.driscoll.personal.repo.DataEntry.OrderDataEntry;
+import cole.driscoll.personal.repo.OrderInfo.Order;
+import cole.driscoll.personal.repo.ProductServiceInfo.AbsProduct;
+import cole.driscoll.personal.repo.ProductServiceInfo.Regular.WashFold;
 import java.util.ArrayList;
 import java.util.Date;
 import org.junit.Before;
@@ -24,7 +31,7 @@ public class OrderDataEntryTest {
     products.add(new WashFold(false, false));
     order = new Order(835, new Date(), new Date(), new Date(), 30.00,
         products, new NonCommercialCustomer("Cole", "Driscoll",
-        "cd@gmail.com", "1234567890", new Address("123 st", "Seattle",
+        "cd@gmail.com", "1234567890", new StreetAddress("123 st", null, "Seattle",
         "Wa", "12345")));
   }
 
@@ -38,8 +45,4 @@ public class OrderDataEntryTest {
     entry.enterOrderInfo(order, 1);
   }
 
-  @Test
-  public void enterPhoneNumber() {
-    entry.enterPhoneNum(order.getCustomer().getPhoneNum(), 1);
-  }
 }

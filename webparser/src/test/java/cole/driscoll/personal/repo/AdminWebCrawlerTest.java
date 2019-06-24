@@ -2,6 +2,7 @@ package cole.driscoll.personal.repo;
 
 import static org.junit.Assert.*;
 
+import cole.driscoll.personal.repo.Crawlers.AdminWebCrawler;
 import java.util.concurrent.TimeUnit;
 import org.junit.Before;
 import org.junit.Test;
@@ -35,7 +36,7 @@ public class AdminWebCrawlerTest {
   public void signIn() throws InterruptedException {
     crawler.signIn();
     TimeUnit.SECONDS.sleep(1);
-    assertEquals(driver.getCurrentUrl(), "https://www.loopie.us/admin/orders.php");
+    assertEquals(driver.getCurrentUrl(), "https://www.loopie.us/admin/");
   }
 
   @Test

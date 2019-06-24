@@ -1,5 +1,31 @@
 package cole.driscoll.personal.repo;
 
+import cole.driscoll.personal.repo.CustomerInfo.StreetAddress;
+import cole.driscoll.personal.repo.ProductServiceInfo.Bags.AbsCommercialBag;
+import cole.driscoll.personal.repo.ProductServiceInfo.Bags.BlueBag;
+import cole.driscoll.personal.repo.ProductServiceInfo.Bags.DuffelBag;
+import cole.driscoll.personal.repo.ProductServiceInfo.Bags.YellowBag;
+import cole.driscoll.personal.repo.CustomerInfo.AbsCustomer;
+import cole.driscoll.personal.repo.CustomerInfo.CommercialCustomer;
+import cole.driscoll.personal.repo.CustomerInfo.NonCommercialCustomer;
+import cole.driscoll.personal.repo.ProductServiceInfo.AbsProduct;
+import cole.driscoll.personal.repo.ProductServiceInfo.Regular.ComLarge;
+import cole.driscoll.personal.repo.ProductServiceInfo.Regular.ComRegular;
+import cole.driscoll.personal.repo.ProductServiceInfo.ComfortersDryCleaning.ComforterQueenKing;
+import cole.driscoll.personal.repo.ProductServiceInfo.ComfortersDryCleaning.ComforterTwinFull;
+import cole.driscoll.personal.repo.ProductServiceInfo.ComfortersDryCleaning.Dress;
+import cole.driscoll.personal.repo.ProductServiceInfo.ComfortersDryCleaning.PantSkirtSweaterJean;
+import cole.driscoll.personal.repo.ProductServiceInfo.ComfortersDryCleaning.ShirtBlouse;
+import cole.driscoll.personal.repo.ProductServiceInfo.Detergent.SensitiveSkin;
+import cole.driscoll.personal.repo.ProductServiceInfo.Detergent.StainOdor;
+import cole.driscoll.personal.repo.ProductServiceInfo.Detergent.Unscented;
+import cole.driscoll.personal.repo.ProductServiceInfo.Specials.Bedding;
+import cole.driscoll.personal.repo.ProductServiceInfo.Specials.BlazerJacketCoat;
+import cole.driscoll.personal.repo.ProductServiceInfo.Specials.Donation;
+import cole.driscoll.personal.repo.ProductServiceInfo.Specials.SleepingBag;
+import cole.driscoll.personal.repo.ProductServiceInfo.Specials.SuitSpecial;
+import cole.driscoll.personal.repo.ProductServiceInfo.Regular.WashDry;
+import cole.driscoll.personal.repo.ProductServiceInfo.Regular.WashFold;
 import java.util.List;
 
 /**
@@ -30,9 +56,9 @@ public class TypeIdentifier {
       return new ComforterTwinFull(false);
     } else if (productWebName.equals("Comforter (Queen-King)")) {
       return new ComforterQueenKing(false);
-    } else if (productWebName.equals("Down Comforters (Queen-King)")) {
+    } else if (productWebName.equals("Down ComfortersDryCleaning (Queen-King)")) {
       return new ComforterQueenKing(true);
-    } else if (productWebName.equals("Down Comforters (Twin-Full)")) {
+    } else if (productWebName.equals("Down ComfortersDryCleaning (Twin-Full)")) {
       return new ComforterTwinFull(true);
     } else if (productWebName.equals("Shirt or Blouse (Laundered & Pressed)")) {
       return new ShirtBlouse(false);
@@ -79,13 +105,13 @@ public class TypeIdentifier {
    * @return - New customer instance
    */
   public AbsCustomer identifyCustomerType(List<AbsProduct> products, String firstName,
-      String lastName, String email, String phoneNum, int Id, Address address) {
+      String lastName, String email, String phoneNum, int Id, StreetAddress streetAddress) {
     for (AbsProduct product : products) {
       if (product instanceof AbsCommercialBag) {
-        return new CommercialCustomer(firstName, lastName, email, phoneNum, address);
+        return new CommercialCustomer(firstName, lastName, email, phoneNum, streetAddress);
       }
     }
-    return new NonCommercialCustomer(firstName, lastName, email, phoneNum, address);
+    return new NonCommercialCustomer(firstName, lastName, email, phoneNum, streetAddress);
   }
 
   /**

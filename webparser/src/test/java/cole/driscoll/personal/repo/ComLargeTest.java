@@ -2,6 +2,8 @@ package cole.driscoll.personal.repo;
 
 import static org.junit.Assert.*;
 
+import cole.driscoll.personal.repo.ProductServiceInfo.Regular.ComLarge;
+import cole.driscoll.personal.repo.ProductServiceInfo.ComfortersDryCleaning.Dress;
 import org.junit.Before;
 import org.junit.Test;
 

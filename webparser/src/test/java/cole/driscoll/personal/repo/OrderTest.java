@@ -2,6 +2,13 @@ package cole.driscoll.personal.repo;
 
 import static org.junit.Assert.*;
 
+import cole.driscoll.personal.repo.ProductServiceInfo.Bags.BlueBag;
+import cole.driscoll.personal.repo.ProductServiceInfo.Bags.DuffelBag;
+import cole.driscoll.personal.repo.CustomerInfo.StreetAddress;
+import cole.driscoll.personal.repo.CustomerInfo.CommercialCustomer;
+import cole.driscoll.personal.repo.OrderInfo.Order;
+import cole.driscoll.personal.repo.ProductServiceInfo.AbsProduct;
+import cole.driscoll.personal.repo.ProductServiceInfo.ComfortersDryCleaning.Dress;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,7 +29,7 @@ public class OrderTest {
     products.add(bag);
     products.add(dress);
     customer = new CommercialCustomer("c", "d", "d@gmail.com",
-        "3456872234", new Address("123", "s", "WA", "123013"));
+        "3456872234", new StreetAddress("123", null,"s", "WA", "123013"));
     order = new Order(1101, new Date(1111), new Date(2222), new Date(3333), 49.99, products, customer);
   }
 
@@ -59,7 +66,7 @@ public class OrderTest {
   @Test
   public void getCustomer() {
     assertEquals(order.getCustomer(), new CommercialCustomer("c", "d", "d@gmail.com",
-        "3456872234", new Address("123", "s", "WA", "123013")));
+        "3456872234", new StreetAddress("123", null, "s", "WA", "123013")));
   }
 
   @Test

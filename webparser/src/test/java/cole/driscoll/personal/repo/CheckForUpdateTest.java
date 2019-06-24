@@ -1,7 +1,8 @@
 package cole.driscoll.personal.repo;
 
-import static org.junit.Assert.*;
-
+import cole.driscoll.personal.repo.Crawlers.AdminWebCrawler;
+import cole.driscoll.personal.repo.Crawlers.AirtableWebCrawler;
+import cole.driscoll.personal.repo.Exceptions.ProductsNotUpdatedException;
 import java.util.concurrent.TimeUnit;
 import org.junit.Before;
 import org.junit.Test;

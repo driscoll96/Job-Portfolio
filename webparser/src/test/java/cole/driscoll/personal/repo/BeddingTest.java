@@ -2,6 +2,7 @@ package cole.driscoll.personal.repo;
 
 import static org.junit.Assert.*;
 
+import cole.driscoll.personal.repo.ProductServiceInfo.Specials.Bedding;
 import org.junit.Before;
 import org.junit.Test;
 
