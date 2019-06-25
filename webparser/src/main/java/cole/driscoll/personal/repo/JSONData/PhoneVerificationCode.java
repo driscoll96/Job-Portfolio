@@ -4,6 +4,6 @@ public class PhoneVerificationCode {
 
   private int Code;
 
-  //private String Expiration;
+  private final String Expiration = "";
 
 }

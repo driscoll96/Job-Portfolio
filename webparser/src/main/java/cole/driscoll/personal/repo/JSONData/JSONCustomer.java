@@ -12,7 +12,7 @@ public class JSONCustomer {
   /**
    * Customer ID.
    */
-  private int ID;
+  //private int ID;
 
   /**
    * First name.
@@ -37,7 +37,7 @@ public class JSONCustomer {
   /**
    * Payment Cards (null for database)
    */
-  private List<PaymentCard> PaymentCards = new ArrayList<>();
+  //private List<PaymentCard> PaymentCards = new ArrayList<>();
 
   /**
    * Customer address.
@@ -47,17 +47,19 @@ public class JSONCustomer {
   /**
    * Devices registered by customer.
    */
-  private List<UserDevice> Devices = new ArrayList<>();
+  //private List<UserDevice> Devices = new ArrayList<>();
 
   /**
    * Phone number.
    */
   private List<Phone> Phones = new ArrayList<>();
 
+  private final String __T = "u";
+
   /**
    * Last time customer was active (null when transferring into database?)
    */
-  private final String LastActive = null;
+  private final String LastActive = "";
 
   /**
    * Constructor which populates field variables with customer info from the admin website.
