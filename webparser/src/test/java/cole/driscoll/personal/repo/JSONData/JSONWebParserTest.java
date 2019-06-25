@@ -23,6 +23,7 @@ public class JSONWebParserTest {
     parser = new JSONWebParser(driver);
   }
 
+  //TODO: Create proper tests
   @Test
   public void getJSONCustomerData() {
     parser.getCrawler().signIn();

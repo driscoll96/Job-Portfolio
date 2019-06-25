@@ -5,14 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * information scraped from the Loopie Admin website.
+ * Information scraped from the Loopie Admin website.
  */
 public class JSONCustomer {
-
-  /**
-   * Customer ID.
-   */
-  //private int ID;
 
   /**
    * First name.
@@ -35,31 +30,19 @@ public class JSONCustomer {
   private List<String> Emails = new ArrayList<>();
 
   /**
-   * Payment Cards (null for database)
-   */
-  //private List<PaymentCard> PaymentCards = new ArrayList<>();
-
-  /**
    * Customer address.
    */
   private List<StreetAddress> Addresses = new ArrayList<>();
-
-  /**
-   * Devices registered by customer.
-   */
-  //private List<UserDevice> Devices = new ArrayList<>();
 
   /**
    * Phone number.
    */
   private List<Phone> Phones = new ArrayList<>();
 
-  private final String __T = "u";
-
   /**
-   * Last time customer was active (null when transferring into database?)
+   * Not sure what this is for.
    */
-  private final String LastActive = "";
+  private final String __T = "u";
 
   /**
    * Constructor which populates field variables with customer info from the admin website.
@@ -76,35 +59,13 @@ public class JSONCustomer {
    */
   public JSONCustomer(String firstName, String lastName, String email, String phoneNum,
       String address1, String address2, String zipCode, String city, String state) {
+    String phone = phoneNum.replaceAll("[^0-9]","");
     this.FirstName = firstName;
     this.LastName = lastName;
-    this.Phone = "+1-" + phoneNum;
+    this.Phone = "+1-" + phone;
     this.Emails.add(email);
     this.Addresses.add(new StreetAddress(address1, address2, city, state, zipCode));
-    this.Phones.add(new Phone(phoneNum, firstName));
+    this.Phones.add(new Phone(phone, firstName));
   }
 
-  public String getFirstName() {
-    return FirstName;
-  }
-
-  public String getLastName() {
-    return LastName;
-  }
-
-  public String getPhone() {
-    return Phone;
-  }
-
-  public List<String> getEmails() {
-    return Emails;
-  }
-
-  public List<StreetAddress> getAddresses() {
-    return Addresses;
-  }
-
-  public List<cole.driscoll.personal.repo.JSONData.Phone> getPhones() {
-    return Phones;
-  }
 }

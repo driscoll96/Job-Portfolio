@@ -1,5 +1,9 @@
 package cole.driscoll.personal.repo.JSONData;
 
+/**
+ * Contains the info of a customer's phone (for JSON data).
+ */
+// Commented out variables are not needed for now
 public class Phone {
 
   /**
@@ -16,11 +20,6 @@ public class Phone {
    * The phone number.
    */
   private String Number;
-
-  /**
-   * The verification code required for the user to login.
-   */
-  private PhoneVerificationCode VerificationCode = new PhoneVerificationCode();
 
   /**
    * Indicates whether the phone number has been verified as belonging to a known person or entity.
