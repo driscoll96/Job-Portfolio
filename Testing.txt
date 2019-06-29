@@ -1,0 +1,54 @@
+#### Unit Testing found at bottom of main code file
+
+Function Testing:
+
+    def board_matrix(move_list):
+        Valid Input: move_list, which is the board matrix represented by lists in a list.
+        Good Output: 8 of "" is added to all 8 lists to move_list as a way to represent the
+                     empty board.
+
+    def draw_board(move_list):
+
+        Valid Input: move_list, which is the board matrix represented by lists in a list.
+        Good Output: A square with black outlining and forest green fill and with width and height of 200 units should appear. Along with
+                     3 horizontal line and 3 vertical lines that are evenly spaced between each line of its same direction. 4 game tiles also
+                     appear in the middle 4 squares where the tiles are white in the top left and bottom right and black tiles in the other 
+                     two tiles. These 4 tile colors are added to their correct spots in the move_list board matrix.
+
+    def check_valid_move():
+
+        Valid Input: Two integers representing x and y coordinates.
+        Good Output: If the two integers point to a square that is a valid move for that player, then the function should produce a list
+                     of length greater than one. This shows that the coordinates point to a square that is a valid move for the player.
+                     For the unit testing, if the input is a valid move then the function should return a list of length greater than 1 with
+                     the correct coordinates of flipped tiles.
+
+    def player_move():
+
+        Valid Input: List of lists containing the coordinates of tiles that are flipped from a certain move.
+            Good Output: Tiles are drawn on the board image and changed in the board matrix corresponding with the coordinates from the input list.
+
+    def computer_player():
+
+        Valid Input: No input required as this is the AI algorithm.
+        Good Output: Tiles are drawn on the board image and changed in the board matrix depending on the AI, which finds the highest yielding
+                valid move and passes those coordinates to check_valid_move and player_move.
+
+    def end_indicator():
+
+        Valid Input: No input required. 
+        Good Output: True/False, depending on whether there is "" still in the move_list board matrix which shows that are still empty squares.
+
+    def player_turn():
+
+        Valid Input: No input, as this is the engine.
+        Good Output: The engine's main task is figuring out whose turn it is, which is dependent on the color of the turtle module (black = human)
+                     (white = AI). Black is represented by a total_moves number that is even and odd for the algorithm.
+
+    def record_score():
+
+        Valid Input: The path of a scores.txt file and a string that represents the user's name.
+        Good Output: This should determine of every match by counting the tiles of each color and comparing them. The function should print the
+                     color of the winner and the number of tiles they have or print "Draw!" if the number of tiles of each color are equal.
+
+          

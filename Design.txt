@@ -1,0 +1,188 @@
+#### This design was created before the final game was made, many references/structures 
+#### changed from beginning to completion
+
+
+Data Structures:
+    
+    Nested List to keep track of player moves, where the inner list will be the coordinates
+    of each square with a tile in it and the color of tile. 
+
+        move_list = [current_move[x-coordinate, y, color-string]]
+
+    There will be .txt file that keeps track of the scores and human players
+
+        f = open(score.txt, "w+")
+        f.write(input_score, user_name)
+
+    Possibly a nested list of valid moves that continuously updates depending on player and
+    change of the tiles
+
+        valid_moves = [valid_coord[int, int]]
+
+Classes:
+
+    ####Purpose
+    # Draws the board as the inital step and then has a player_moves() function that is used
+    # to draw the newest player move, which includes drawing the new tile and changing the 
+    # other tile that gets flipped
+
+    Class UpdateBoard:
+        move_list = []
+
+        def __init__():
+            (See Simple Game.py for code that draws game board with initial tiles)
+            # different values for board_side_length, set_positions, and number of iterations in the for loops
+            self.move_list.append(each of the initial tile coordinates)
+
+        def player_move(move_list, valid_moves):
+
+            (see Simple Game.py for code that draws tiles, adds elements to move_list)
+            # different values for len(move_list) and setposition, 
+            # and also only draws black tiles (remove the color_counter)
+
+            # conditionals that makes sure player does valid move
+                
+                input_col = changed_tile[0]
+                input_row = changed_tile[1]
+                
+                # code that uses these two variables to draw othello.circle()
+
+            # grabs the last move made by looking at the end of move_list
+            new_tile = move_list[len(move_list-1)]
+            for t in move_list:
+                if t[0] or t[0] == (1+t[0]) or (1+t[1]) and (t[2] != new_tile.self[2]):
+                    changed_tile = t
+
+
+Outside Functions:
+
+####Purpose
+# Make an AI that calculates the best move then passes that into the driver to
+# call player_move in Class UpdateBoard. The best move will being based on trying
+# to get as close as possible to any edge or corner on the board, with corners being
+# prioritized. If it can't get to an edge or corner it finds the closest move to a corner.
+
+def ai(valid_moves):
+    best_move = []
+    closest_to_corner = []
+    for c in valid_moves:
+        if c[0] == c[1] or (c[0] == 1 and c[1] == 8) or (c[0] == 8 and c[1] == 1):
+            best_move = v
+        elif c[0] or c[1] == 1:
+            best_move = v
+        else:
+                if (c[0] - edge_row_coord = 1) <  (closest_to_corner[0] - edge_row_coord)
+                # more code that finds the difference between each edge row and col value
+                # and the row and col value of the current element in valid_moves and then
+                # changes the value of closest_to_corner if the difference is less for the
+                # current element than the difference of closest_to_corner
+
+    # code that draws a white circle with the coordinates in best_move
+
+    return best_move
+
+
+####Purpose
+# Create a list of all valid moves for the AI and the human player to use to determine their
+# their next move. The function looks through the move_list list of moves to see which elements
+# are next to each other and have different string values for their color index number ([2]). If
+# this conditional is true then it adds the coordinates of the valid move space into a list.
+
+def find_valid_moves(move_list, player_color):
+    valid_moves = []
+    counter = 1
+    valid_coordinates = []
+    for m in move_list:
+        for o in move_list[counter:]:
+            if m[0]+1 == o[0] or m[1]+1 == o[1] or m[0]-1 == o[0] or m[1]-1 == o[1]:
+                if o[2] != player_color:
+                    valid_coordinates.append(m[0]+2)
+                    valid_coordinates.append(m[1])
+                    valid_coordinates.append(player_color)
+                    valid_moves.append(valid_coordinates)
+
+            elif m[1]+1 == o[1]:
+                if o[2] != player_color:
+                    valid_coordinates.append(m[1])
+                    valid_coordinates.append(m[1]+2)
+                    valid_coordinates.append(player_color)
+                    valid_moves.append(valid_coordinates)
+
+            elif m[0]-1 == o[0]:
+                if o[2] != player_color:
+                    valid_coordinates.append(m[0]-2)
+                    valid_coordinates.append(m[1])
+                    valid_coordinates.append(player_color)
+                    valid_moves.append(valid_coordinates)
+
+            elif m[1]-1 == o[1]:
+                if o[2] != player_color:
+                    valid_coordinates.append(m[0])
+                    valid_coordinates.append(m[1]-2)
+                    valid_coordinates.append(player_color)
+                    valid_moves.append(valid_coordinates)
+
+    return valid_moves
+
+
+Driver:
+# Invalid moves are addressed with a print statement in the player_move function
+# of the UpdateBoard class
+
+    othello = turtle.Turtle
+    wn = turtle.screen
+    turn_counter = 1
+    game_board = UpdateBoard()
+    valid_moves = find_valid_moves(game_board.move_list, "black")
+    while move_list < 64:
+        if turn_counter%2 != 0:
+            valid_moves = find_valid_moves(game_board.move_list, "black")
+            print("Click to choose a move")
+            game_board.player_move(move_list, valid_moves)
+            valid_moves = find_valid_moves(game_board.move_list, "white")
+        else:
+            valid_moves = find_valid_moves(game_board.move_list, "white")
+            game_board.move_list.append(ai(valid_moves))
+            valid_moves = find_valid_moves(game_board.move_list, "black")
+        turn_counter += 2
+    print("Game is over")
+    color_index = 2
+    black_tiles = 0
+    white_tiles = 0
+    for tiles in board_game.move_list:
+        if tile[color_index] == "black":
+            black_tiles += 1
+        else:
+            white_tiles += 1
+    print("You had", black_tiles on the board)
+    if black_tiles > white_tiles:
+        print("You won!")
+    elif white_tiles < black_tiles:
+        print("You lost")
+    else:
+        print("You tied")
+            
+
+
+
+
+
+
+
+
+
+                
+
+
+
+
+
+
+
+
+
+    
+
+            
+
+

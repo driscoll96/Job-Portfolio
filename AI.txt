@@ -1,0 +1,18 @@
+AI Algorithm Explanation:
+
+I attempted to make my computer AI "player" smart by having it pick its next move by
+going through all the valid moves it could perform and seeing which valid move would
+yield the most flipped tiles. I was able to accomplish this and the computer play is
+as smart as I would want for a "medium level" computer AI player. For the algorithm,
+I used the function check_valid_move which takes as input x and y coordinates of that
+square and looks at the surrounding squares to see if any are of opposite color. If this
+is the case, then the function looks to see if there is a tile of the same color 
+"sandwiching" the opposite color tile. The function returns the number of flipped tiles, which
+indicates whether that square is a valid move for the AI. The AI algorithm does this for every single 
+unoccupied square in the board matrix and records the valid move with the highest yielding tiles flipped. 
+The AI then gives the coordinates to another function to pick/draw this move on the board image
+and matrix. The computer player wins only about 30 percent of the time against me and about 60 
+percent of the time against other human users. I think I could make the AI smarter if I added 
+a few more ways for it to rate every valid move. I think that edge and corner squares are very
+valuable because there is less possibility of the human player being able to capture its tiles there.
+Thus, to improve the AI, I would have it prioritize a move if it places a tile in those edge/corner squares.
