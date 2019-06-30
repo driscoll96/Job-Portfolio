@@ -1,0 +1,21 @@
+﻿Lift ID,Lift Name,Connections,Alpine?,SkillLevel
+0,BlackComb Gondola,"0, 1, 2, 3, 4, 5, 6, 7, 8",no,0
+1,Catskinner,"0, 1, 2, 3, 4, 5, 6, 7, 8",no,0
+2,Jersey,"0, 1, 2, 3, 4, 5, 6, 7, 8",no,0
+3,Excellerator,"0, 2, 3, 6, 8",no,0
+4,Excalibur,"0, 3, 4",no,0
+5,7th Heaven,"0, 2, 3, 4, 6, 8, 9, 10",no,0
+6,Glacier," 2, 3, 4, 6, 8, 9, 10",no,0
+7,Peak to Peak,"0, 1, 2, 3, 4, 5, 6, 8, 11, 12, 13, 14, 16, 17, 18, 19",no,0
+8,Crystal,"2, 3, 4, 6, 8",no,0
+9,Showcase T Bar,"2, 3, 4, 6, 8, 9",no,0
+10,Horsemann T Bar,"0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10",no,0
+11,Whistler Gondola,"11, 12, 13, 14, 15, 17, 18, 19",no,0
+12,Fitzsimmons,"11, 12, 17",no,0
+13,Creekside Gondola,"11, 12, 13, 17, 19",no,0
+14,Peak,"11, 12, 13, 14, 15, 17, 18, 19",yes,0
+15,Harmony,"11, 12, 13, 14, 16, 15, 17, 18, 19",yes,0
+16,Symphony,"15, 18, 17, 11, 12",yes,0
+17,Garbanzo,"11, 12, 13, 17, 18, 19",no,0
+18,Emerald,"11, 12, 13, 14, 15, 17, 18, 19",no,0
+19,Red,"11, 12, 13, 14, 15, 17, 18, 19",no,0
