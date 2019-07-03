@@ -3,6 +3,9 @@ Cole Driscoll's Portfolio
 
 - 5500Project: (Query Database Web Server)
   - Web server that allows users to retrieve collections of data through queries.
+  
+- DataScripts: (Data Analytics and Formatting)
+  - Data analytics and formatting for calculations and database entry.
 
 - Othello Video Game:
   - Fully functional Othello game in Python with game graphics and user interface.
