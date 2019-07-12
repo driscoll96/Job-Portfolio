@@ -1,7 +1,10 @@
 package cole.driscoll.personal.repo;
 
-import static org.junit.Assert.*;
-
+import cole.driscoll.personal.repo.CustomerInfo.AbsCustomer;
+import cole.driscoll.personal.repo.CustomerInfo.StreetAddress;
+import cole.driscoll.personal.repo.CustomerInfo.CommercialCustomer;
+import cole.driscoll.personal.repo.CustomerInfo.CustomerPool;
+import cole.driscoll.personal.repo.CustomerInfo.NonCommercialCustomer;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Before;
@@ -16,9 +19,9 @@ public class CustomerPoolTest {
   @Before
   public void setUp() throws Exception {
     customer1 = new CommercialCustomer("c", "d", "d@gmail.com",
-        "3456872234", new Address("123", "s", "WA", "123013"));
+        "3456872234", new StreetAddress("123", null,"s", "WA", "123013"));
     customer2 = new NonCommercialCustomer("l", "d", "l@gmail.com",
-        "3456322234", new Address("13", "c", "WA", "123013"));
+        "3456322234", new StreetAddress("13", null,"c", "WA", "123013"));
     customers = new ArrayList<>();
     customers.add(customer1);
     customers.add(customer2);

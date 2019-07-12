@@ -1,5 +1,12 @@
 package cole.driscoll.personal.repo;
 
+import cole.driscoll.personal.repo.Crawlers.AdminWebCrawler;
+import cole.driscoll.personal.repo.CustomerInfo.AbsCustomer;
+import cole.driscoll.personal.repo.CustomerInfo.StreetAddress;
+import cole.driscoll.personal.repo.Exceptions.NoCustomerFoundException;
+import cole.driscoll.personal.repo.OrderInfo.Order;
+import cole.driscoll.personal.repo.Scrapers.AdminWebScraper;
+import cole.driscoll.personal.repo.ProductServiceInfo.AbsProduct;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -88,7 +95,7 @@ public class WebParser {
       //crawler.goToCustomerInfo(columns);
       customer = identifier.identifyCustomerType(customerProducts, columns.get(2).getText(), columns.get(3).getText(),
           adminScraper.getCustomerEmail(), columns.get(4).getText(), Integer.parseInt(columns.get(1).getText()),
-          new Address(columns.get(5).getText(), columns.get(6).getText(), adminScraper.getState(), adminScraper.getZip()));
+          new StreetAddress(columns.get(5).getText(), null, columns.get(6).getText(), adminScraper.getState(), adminScraper.getZip()));
       customers.add(customer);
     }
     return customers;

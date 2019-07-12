@@ -2,6 +2,8 @@ package cole.driscoll.personal.repo;
 
 import static org.junit.Assert.*;
 
+import cole.driscoll.personal.repo.ProductServiceInfo.Bags.BlueBag;
+import cole.driscoll.personal.repo.ProductServiceInfo.Specials.Donation;
 import org.junit.Before;
 import org.junit.Test;
 

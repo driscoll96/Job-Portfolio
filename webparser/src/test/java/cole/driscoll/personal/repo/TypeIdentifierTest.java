@@ -2,6 +2,31 @@ package cole.driscoll.personal.repo;
 
 import static org.junit.Assert.*;
 
+import cole.driscoll.personal.repo.CustomerInfo.StreetAddress;
+import cole.driscoll.personal.repo.ProductServiceInfo.Bags.BlueBag;
+import cole.driscoll.personal.repo.ProductServiceInfo.Bags.DuffelBag;
+import cole.driscoll.personal.repo.ProductServiceInfo.Bags.YellowBag;
+import cole.driscoll.personal.repo.CustomerInfo.AbsCustomer;
+import cole.driscoll.personal.repo.CustomerInfo.CommercialCustomer;
+import cole.driscoll.personal.repo.CustomerInfo.NonCommercialCustomer;
+import cole.driscoll.personal.repo.ProductServiceInfo.AbsProduct;
+import cole.driscoll.personal.repo.ProductServiceInfo.Regular.ComLarge;
+import cole.driscoll.personal.repo.ProductServiceInfo.Regular.ComRegular;
+import cole.driscoll.personal.repo.ProductServiceInfo.ComfortersDryCleaning.ComforterQueenKing;
+import cole.driscoll.personal.repo.ProductServiceInfo.ComfortersDryCleaning.ComforterTwinFull;
+import cole.driscoll.personal.repo.ProductServiceInfo.ComfortersDryCleaning.Dress;
+import cole.driscoll.personal.repo.ProductServiceInfo.ComfortersDryCleaning.PantSkirtSweaterJean;
+import cole.driscoll.personal.repo.ProductServiceInfo.ComfortersDryCleaning.ShirtBlouse;
+import cole.driscoll.personal.repo.ProductServiceInfo.Detergent.SensitiveSkin;
+import cole.driscoll.personal.repo.ProductServiceInfo.Detergent.StainOdor;
+import cole.driscoll.personal.repo.ProductServiceInfo.Detergent.Unscented;
+import cole.driscoll.personal.repo.ProductServiceInfo.Specials.Bedding;
+import cole.driscoll.personal.repo.ProductServiceInfo.Specials.BlazerJacketCoat;
+import cole.driscoll.personal.repo.ProductServiceInfo.Specials.Donation;
+import cole.driscoll.personal.repo.ProductServiceInfo.Specials.SleepingBag;
+import cole.driscoll.personal.repo.ProductServiceInfo.Specials.SuitSpecial;
+import cole.driscoll.personal.repo.ProductServiceInfo.Regular.WashDry;
+import cole.driscoll.personal.repo.ProductServiceInfo.Regular.WashFold;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Before;
@@ -32,9 +57,9 @@ public class TypeIdentifierTest {
         new ComforterTwinFull(false));
     assertEquals(identifier.identifyProductType("Comforter (Queen-King)"),
         new ComforterQueenKing(false));
-    assertEquals(identifier.identifyProductType("Down Comforters (Queen-King)"),
+    assertEquals(identifier.identifyProductType("Down ComfortersDryCleaning (Queen-King)"),
         new ComforterQueenKing(true));
-    assertEquals(identifier.identifyProductType("Down Comforters (Twin-Full)"),
+    assertEquals(identifier.identifyProductType("Down ComfortersDryCleaning (Twin-Full)"),
         new ComforterTwinFull(true));
     assertEquals(identifier.identifyProductType("Shirt or Blouse (Laundered & Pressed)"),
         new ShirtBlouse(false));
@@ -77,27 +102,27 @@ public class TypeIdentifierTest {
     products.add(new WashFold(false, false));
     products.add(new WashDry());
     NonCommercialCustomer customer = new NonCommercialCustomer("c", "d", "cd@GMAIL.COM",
-        "1234567890", new Address("street", "seattle", "WA", "90102"));
+        "1234567890", new StreetAddress("street", null,"seattle", "WA", "90102"));
     assertEquals(identifier.identifyCustomerType(products, "c", "d", "cd@GMAIL.COM",
-        "1234567890", 123, new Address("street", "seattle", "WA", "90102")), customer);
+        "1234567890", 123, new StreetAddress("street", null,"seattle", "WA", "90102")), customer);
     List<AbsProduct> productsCom = new ArrayList<>();
     productsCom.add(new ComRegular());
     CommercialCustomer customerCom = new CommercialCustomer("c", "d", "cd@GMAIL.COM",
-        "1234567890", new Address("street", "seattle", "WA", "90102"));
+        "1234567890", new StreetAddress("street", null,"seattle", "WA", "90102"));
     assertEquals(identifier.identifyCustomerType(productsCom, "c", "d", "cd@GMAIL.COM",
-        "1234567890", 123, new Address("street", "seattle", "WA", "90102")), customerCom);
+        "1234567890", 123, new StreetAddress("street", null,"seattle", "WA", "90102")), customerCom);
   }
 
   @Test
   public void identifyCustomerWithOrder() {
     List<AbsCustomer> customers = new ArrayList<>();
     customers.add(new NonCommercialCustomer("c", "d", "cd@GMAIL.COM",
-        "1234567890", new Address("street", "seattle", "WA", "90102")));
+        "1234567890", new StreetAddress("street", null,"seattle", "WA", "90102")));
     AbsCustomer customer = new CommercialCustomer("page", "ten", "cd@GMAIL.COM",
-        "1234567890", new Address("street", "seattle", "WA", "90102"));
+        "1234567890", new StreetAddress("street", null,"seattle", "WA", "90102"));
     customers.add(customer);
     customers.add(new CommercialCustomer("ivor", "zal", "cd@GMAIL.COM",
-        "1234567890", new Address("street", "seattle", "WA", "90102")));
+        "1234567890", new StreetAddress("street", null,"seattle", "WA", "90102")));
     assertEquals(identifier.identifyCustomerWithOrder("page", "ten", customers), customer);
   }
 }

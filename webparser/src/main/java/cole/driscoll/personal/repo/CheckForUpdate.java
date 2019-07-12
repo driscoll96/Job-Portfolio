@@ -1,5 +1,7 @@
 package cole.driscoll.personal.repo;
 
+import cole.driscoll.personal.repo.Scrapers.AdminWebScraper;
+import cole.driscoll.personal.repo.Scrapers.AirtableWebScraper;
 import java.util.List;
 import java.util.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
