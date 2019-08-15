@@ -39,8 +39,9 @@ public class AdminWebCrawler extends AbsWebCrawler {
   public void signIn() {
     super.getDriver().get("https://www.loopie.us/admin/login.php");
     super.maxWindow();
-    super.getDriver().findElement(By.name("p_username")).sendKeys("Admin");
-    super.getDriver().findElement(By.name("p_password")).sendKeys("admin456");
+    // Won't run unless password and user are changed to actual
+    super.getDriver().findElement(By.name("p_username")).sendKeys("xxxx");
+    super.getDriver().findElement(By.name("p_password")).sendKeys("xxxxxx");
     super.getDriver().findElement(By.xpath("//*[@id=\"login_form\"]/div[3]/button")).click();
     super.getDriver().manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
   }
