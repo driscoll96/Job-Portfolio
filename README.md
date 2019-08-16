@@ -2,7 +2,7 @@
 Cole Driscoll's Portfolio
 
 - 5500Project: (Query Database Web Server)
-  - Web server that allows users to retrieve collections of data through queries.
+  - Synthetic ski data generator, API, and web application that allows users to retrieve collections of data through queries.
   
 - DataScripts: (Data Analytics and Formatting)
   - Data analytics and formatting for calculations and database entry.
