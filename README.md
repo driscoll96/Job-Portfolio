@@ -1,7 +1,10 @@
 # Job-Portfolio
 Cole Driscoll's Portfolio
 
-- Dropsy Folders:
+- ValleyConnect:
+  - Sponsorship marketplace (https://www.valleyconnect.app/)
+
+- Dropsy:
   - Peer-to-peer video game tipping service
 
 - 5500Project: (Query Database Web Server)
