@@ -1,0 +1,7 @@
+.card {
+  cursor: pointer;
+  @mixin hover {
+    box-shadow: var(--mantine-shadow-md);
+    transform: scale(1.05);
+  }
+}
