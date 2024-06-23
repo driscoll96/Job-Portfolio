@@ -3,9 +3,11 @@ Cole Driscoll's Portfolio
 
 - ValleyConnect:
   - Sponsorship marketplace (https://www.valleyconnect.app/)
+  - Documentation: https://drive.google.com/drive/folders/1gzrFWD_ySgkDjxH34dOTjr2yDW-zO_NA?usp=sharing
 
 - Dropsy:
   - Peer-to-peer video game tipping service
+  - Documentation: https://docs.google.com/document/d/101sSHsBdT0peh2MzeSVTbZySkTc2ycdI8Px1vASf1VM/edit?usp=sharing
 
 - 5500Project: (Query Database Web Server)
   - Synthetic ski data generator, API, and web application that allows users to retrieve collections of data through queries.
